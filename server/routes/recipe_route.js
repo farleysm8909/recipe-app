@@ -9,11 +9,26 @@ const router = express.Router();
 // create new recipe
 router.post("/", async (req, res) => { 
     // validate request
-    if (!req.body.name || !req.body.ingredients || !req.body.directions) {
-        return res.status(400).send({error: "Name, ingredients and directions fields cannot be empty"});
+    if (!req.body.name || !req.body.course || !req.body.cuisine || !req.body.category || 
+        !req.body.recipeYield || !req.body.rating || !req.body.ingredients || !req.body.directions) {
+        return res.status(400).send({error: "Name, category, ingredients and directions fields cannot be empty"});
     }
+
+    const recipes = await Recipe.find();
+    // traverse through recipes to check if there is a naming conflict (names must be unique)
+    recipes.forEach(recipe => {
+        if (recipe.name == req.body.name) {
+            res.status(400).send({error: "Recipe name already exists!"});
+        }
+    });
+
     const data = {
         name:           req.body.name,
+        course:         req.body.course,
+        cuisine:        req.body.cuisine,
+        category:       req.body.category,
+        recipeYield:    req.body.recipeYield,
+        rating:         req.body.rating,
         ingredients:    req.body.ingredients,
         directions:     req.body.directions
     };

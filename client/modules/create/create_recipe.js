@@ -2,23 +2,24 @@ import { displayHomepage } from "../retrieve/homepage.js";
 //import { retrieveRecipe } from "./retrieve.js";
 
 async function createRecipe() {
+    let name_error_msg = document.getElementById("name-error-msg");
+    name_error_msg.innerHTML = ""; // clear former error msgs
+
     const url = "http://127.0.0.1:3000/recipe";
 
     const entered_ingredients = document.getElementById("ingredients").value;
-    let ingredient_list = entered_ingredients.split("\n");
-    console.log(ingredient_list);
+    const ingredient_list = entered_ingredients.split("\n");
 
     const entered_directions = document.getElementById("directions").value;
-    let directions_list = entered_directions.split("\n");
-    console.log(directions_list);
-    // if (entered_ingredients) {
-    //     for (let i = 0; i < entered_ingredients.length; i++) {
-    //         ingredient_list.push(entered_ingredients[i].value);
-    //     }
-    // }
-
+    const directions_list = entered_directions.split("\n");
+    
     const data = {
-        name:           document.querySelector("#name").value,
+        name:           document.getElementById("name").value,
+        course:         document.getElementById("course").value,
+        cuisine:        document.getElementById("cuisine").value,
+        category:       document.getElementById("category").value, // grabs selected val from dropdown
+        recipeYield:    document.getElementById("recipe-yield").value,
+        rating:         document.getElementById("rating").value,
         ingredients:    ingredient_list,
         directions:     directions_list
     };

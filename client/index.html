@@ -23,45 +23,124 @@
         <div id="create-recipe-container">
             <h1>Create a New Recipe</h1>
             <div id="create-recipe-response"></div>
-            <section>
-                <div class="input-group mb-3">
+            <form class="row g-3 needs-validation" novalidate>
+                <!-- Name -->
+                <div class="col-md-6">
+                  <label for="name" class="form-label">Name</label>
+                  <input type="text" class="form-control" id="name" placeholder="Recipe Name" required>
+                  <div class="valid-feedback">
+                    Looks good!
+                  </div>
+                  <div id="name-error-msg" class="invalid-feedback"></div>
+                </div>
+
+                <!-- Recipe Yield -->
+                <div class="col-md-6">
+                    <label for="recipe-yield" class="form-label">Recipe Yield</label>
+                    <input type="text" class="form-control" id="recipe-yield" placeholder="4-6 servings">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div id="name-error-msg" class="invalid-feedback"></div>
+                </div>
+
+                <!-- Category -->
+                <div class="col-md-2">
+                    <label for="category" class="form-label">Category</label>
+                    <select id="category" class="form-select">
+                        <option selected disabled value="">Choose...</option>
+                        <option value="Cooking">Cooking</option>
+                        <option value="Baking">Baking</option>
+                        <option value="Mixology">Mixology</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid category.
+                    </div>
+                </div>
+
+                <!-- Course -->
+                <div class="col-md-2">
+                    <label for="course" class="form-label">Course</label>
+                    <select id="course" class="form-select">
+                        <option selected disabled value="">Choose...</option>
+                        <option value="Appetizer">Appetizer</option>
+                        <option value="Lunch">Lunch</option>
+                        <option value="Happy-Hour">Happy Hour</option>
+                        <option value="Dinner">Dinner</option>
+                        <option value="Dessert">Dessert</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid course.
+                    </div>
+                </div>
+
+                <!-- Cuisine -->
+                <div class="col-md-2">
+                    <label for="cuisine" class="form-label">Cuisine</label>
+                    <select id="cuisine" class="form-select">
+                        <option selected disabled value="">Choose...</option>
+                        <option value="American">American</option>
+                        <option value="British">British</option>
+                        <option value="Chinese">Chinese</option>
+                        <option value="French">French</option>
+                        <option value="German">German</option>
+                        <option value="Greek">Greek</option>
+                        <option value="Hawaiian">Hawaiian</option>
+                        <option value="Italian">Italian</option>
+                        <option value="Indian">Indian</option>
+                        <option value="Japanese">Japanese</option>
+                        <option value="Mexican">Mexican</option>
+                        <option value="Polish">Polish</option>
+                        <option value="Spanish">Spanish</option>
+                        <option value="Thai">Thai</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid cuisine.
+                    </div>
+                </div>
+                
+
+                <!-- Rating -->
+                <div class="col-md-2">
+                    <label for="rating" class="form-label">Rating</label>
+                    <select id="rating" class="form-select">
+                        <option selected disabled value="">Choose...</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Please select a valid rating.
+                    </div>
+                </div>
+                
+                
+
+
+                <!-- <div class="input-group mb-3">
                     <span class="input-group-text">Name</span>
                     <input type="text" class="form-control" id="name" placeholder="Recipe Name">
                 </div>
+                 -->
 
-                <!-- <div class="input-group mb-3">
-                    <span class="input-group-text">Directions</span>
-                    <input type="text" class="form-control" id="directions" placeholder="Preheat the oven to 350 degrees. Add oil to a pan over high heat...">
-                </div> -->
-
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Ingredients</span>
-                    <textarea type="text" class="form-control" id="ingredients" rows ="3" placeholder="e.g., 2 cups flour">
+                <!-- Ingredients -->
+                <div class="mb-3">
+                    <label for="ingredients" class="form-label">Ingredients (one per line)</label>
+                    <textarea class="form-control" id="ingredients" rows="3" placeholder="e.g., 2 cups flour"></textarea>
                 </div>
 
-                <div class="input-group mb-3">
-                    <span class="input-group-text">Directions</span>
-                    <textarea type="text" class="form-control" id="directions" rows ="3" placeholder="e.g., Preheat the oven to 350 degrees...">
+                <!-- Directions -->
+                <div class="mb-3">
+                    <label for="directions" class="form-label">Directions (one per line)</label>
+                    <textarea class="form-control" id="directions" rows="3" placeholder="e.g., Preheat the oven to 350 degrees..."></textarea>
                 </div>
 
-                <!-- <div class="r-directions">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Step #1</span>
-                        <input type="text" class="form-control step-values" id="steps" placeholder="e.g., Preheat the oven to...">
-                    </div> 
-                    <div id="more-steps"></div>
-                </div>
-        
-                <div class="r-ingredients">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Ingredient #1</span>
-                        <input type="text" class="form-control ingredient-values" id="ingredients" placeholder="e.g., 2 cups of flour">
-                    </div> 
-                    <div id="more-ingredients"></div>
-                </div> -->
-            </section>
-            <button id="save-recipe-btn" type="button" class="btn btn-success">Save</button>
-            <button id="cancel-create-btn" type="button" class="btn btn-danger">Cancel</button>
+                <button id="save-recipe-btn" type="submit" class="btn btn-success">Save</button>
+                <button id="cancel-create-btn" type="button" class="btn btn-danger">Cancel</button>
+            </form>
         </div>
     </div>
 

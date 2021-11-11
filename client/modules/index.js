@@ -2,7 +2,6 @@ import { displayHomepage } from "./retrieve/homepage.js";
 import { createRecipe } from "./create/create_recipe.js";
 
 window.addEventListener('DOMContentLoaded', () => {
-
     displayHomepage();
 
     // add event listeners for statically displayed buttons

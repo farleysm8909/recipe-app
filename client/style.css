@@ -2,11 +2,17 @@
     display: none;
 }
 
-/* textarea {
+.valid-feedback, .invalid-feedback {
+    display: none;
+}
+
+textarea {
     background: url(http://i.imgur.com/2cOaJ.png);
     background-attachment: local;
     background-repeat: no-repeat;
     padding-left: 35px;
     padding-top: 10px;
     border-color:#ccc;
-} */
+    resize: none;
+    height: auto;
+}
