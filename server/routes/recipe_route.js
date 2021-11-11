@@ -29,6 +29,8 @@ router.post("/", async (req, res) => {
         category:       req.body.category,
         recipeYield:    req.body.recipeYield,
         rating:         req.body.rating,
+        season:         req.body.season,
+        tags:           req.body.tags,
         ingredients:    req.body.ingredients,
         directions:     req.body.directions
     };

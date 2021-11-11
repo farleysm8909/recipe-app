@@ -16,3 +16,7 @@ textarea {
     resize: none;
     height: auto;
 }
+
+form > * {
+    margin: 20px 0;
+}

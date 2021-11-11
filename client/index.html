@@ -25,7 +25,7 @@
             <div id="create-recipe-response"></div>
             <form class="row g-3 needs-validation" novalidate>
                 <!-- Name -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <label for="name" class="form-label">Name</label>
                   <input type="text" class="form-control" id="name" placeholder="Recipe Name" required>
                   <div class="valid-feedback">
@@ -35,13 +35,23 @@
                 </div>
 
                 <!-- Recipe Yield -->
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label for="recipe-yield" class="form-label">Recipe Yield</label>
-                    <input type="text" class="form-control" id="recipe-yield" placeholder="4-6 servings">
+                    <input type="text" class="form-control" id="recipe-yield" placeholder="e.g., 4-6 servings">
                     <div class="valid-feedback">
                         Looks good!
                     </div>
-                    <div id="name-error-msg" class="invalid-feedback"></div>
+                    <div id="yield-error-msg" class="invalid-feedback"></div>
+                </div>
+
+                <!-- Tags -->
+                <div class="col-md-4">
+                    <label for="tags" class="form-label">Tag Words</label>
+                    <input type="text" class="form-control" id="tags" placeholder="e.g., chicken, crispy, spicy...">
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div id="tags-error-msg" class="invalid-feedback"></div>
                 </div>
 
                 <!-- Category -->
@@ -116,9 +126,27 @@
                         Please select a valid rating.
                     </div>
                 </div>
-                
-                
 
+                <!-- Season -->
+                <div class="col-md-4">
+                    <label class="form-label">In which season(s) is this recipe most enjoyed?</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="Spring">
+                        <label class="form-check-label" for="inlineCheckbox1">Spring</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="Summer">
+                        <label class="form-check-label" for="inlineCheckbox2">Summer</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Fall">
+                        <label class="form-check-label" for="inlineCheckbox3">Fall</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="Winter">
+                        <label class="form-check-label" for="inlineCheckbox3">Winter</label>
+                    </div>
+                </div>
 
                 <!-- <div class="input-group mb-3">
                     <span class="input-group-text">Name</span>
@@ -138,7 +166,7 @@
                     <textarea class="form-control" id="directions" rows="3" placeholder="e.g., Preheat the oven to 350 degrees..."></textarea>
                 </div>
 
-                <button id="save-recipe-btn" type="submit" class="btn btn-success">Save</button>
+                <button id="save-recipe-btn" type="button" class="btn btn-success">Save</button>
                 <button id="cancel-create-btn" type="button" class="btn btn-danger">Cancel</button>
             </form>
         </div>

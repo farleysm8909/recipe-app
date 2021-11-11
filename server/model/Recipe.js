@@ -22,8 +22,8 @@ const Recipe = new Schema({
     datePublished:  {type: Date, default: () => Date.now()},
     recipeYield:    {type: String, required: true},
     rating:         {type: String, required: true},
-    // season:         {type: [String]},
-    // tags:           {type: [String]},
+    season:         {type: [String], required: true},
+    tags:           {type: [String], required: true},
     ingredients:    {type: [String], required: true},
     directions:     {type: [String], required: true}
 });

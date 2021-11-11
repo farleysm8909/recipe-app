@@ -7,19 +7,36 @@ async function createRecipe() {
 
     const url = "http://127.0.0.1:3000/recipe";
 
+    // format seasons
+    const checkboxes = document.getElementsByClassName("form-check-input");
+    let checked_seasons = [];
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            checked_seasons.push(checkboxes[i].value);
+        }
+    }
+
+    // format tags
+    const tags = document.getElementById("tags").value;
+    const tags_list = tags.split(",");
+
+    // format ingredients
     const entered_ingredients = document.getElementById("ingredients").value;
     const ingredient_list = entered_ingredients.split("\n");
 
+    // format directions
     const entered_directions = document.getElementById("directions").value;
     const directions_list = entered_directions.split("\n");
     
     const data = {
         name:           document.getElementById("name").value,
-        course:         document.getElementById("course").value,
+        course:         document.getElementById("course").value, // grabs selected val from dropdown
         cuisine:        document.getElementById("cuisine").value,
-        category:       document.getElementById("category").value, // grabs selected val from dropdown
+        category:       document.getElementById("category").value, 
         recipeYield:    document.getElementById("recipe-yield").value,
         rating:         document.getElementById("rating").value,
+        season:         checked_seasons,
+        tags:           tags_list,
         ingredients:    ingredient_list,
         directions:     directions_list
     };
@@ -35,6 +52,7 @@ async function createRecipe() {
     const fetchResponse = await fetch(url, config);
     const jsonResponse = await fetchResponse.json();
 
+    
     document.getElementById("create-recipe-container").style.display = "none";
     displayHomepage();
     document.getElementById("homepage-container").style.display = "block";
