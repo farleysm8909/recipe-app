@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
     // traverse through recipes to check if there is a naming conflict (names must be unique)
     recipes.forEach(recipe => {
         if (recipe.name == req.body.name) {
-            res.status(400).send({error: "Recipe name already exists!"});
+            return res.status(400).send({error: "Recipe name already exists!"});
         }
     });
 

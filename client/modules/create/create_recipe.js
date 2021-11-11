@@ -2,8 +2,8 @@ import { displayHomepage } from "../retrieve/homepage.js";
 //import { retrieveRecipe } from "./retrieve.js";
 
 async function createRecipe() {
-    let name_error_msg = document.getElementById("name-error-msg");
-    name_error_msg.innerHTML = ""; // clear former error msgs
+    let general_error_msg = document.getElementById("general-error-msg");
+    general_error_msg.innerHTML = ""; // clear former error msgs
 
     const url = "http://127.0.0.1:3000/recipe";
 
@@ -52,11 +52,15 @@ async function createRecipe() {
     const fetchResponse = await fetch(url, config);
     const jsonResponse = await fetchResponse.json();
 
+    if (jsonResponse.error) {
+        general_error_msg.style.display = "block";
+        general_error_msg.innerHTML = jsonResponse.error;
+    } else {
+        document.getElementById("create-recipe-container").style.display = "none";
+        displayHomepage();
+        document.getElementById("homepage-container").style.display = "block";
+    }
     
-    document.getElementById("create-recipe-container").style.display = "none";
-    displayHomepage();
-    document.getElementById("homepage-container").style.display = "block";
-
 }
 
 
