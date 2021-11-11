@@ -6,13 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-   
+    <link href="style.css" rel="stylesheet">
     <title>Sam Farley's Recipes</title>
 </head>
 <body>
     <div class="container">
-        <div id="homepage"></div>
-        <div id="single-recipe"></div>
+        <div id="homepage-container">
+            <h1>My Recipes</h1>
+            <button id="create-btn" type="button" class="btn btn-primary">Create Recipe</button>
+            <div id="recipes-container"></div>
+        </div>
+
+        <div id="single-recipe-container"></div>
+
+
+        <div id="create-recipe-container">
+            <h1>Create a New Recipe</h1>
+            <div id="create-recipe-response"></div>
+            <section>
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Name</span>
+                    <input type="text" class="form-control" id="name" placeholder="Recipe Name">
+                </div>
+
+                <!-- <div class="input-group mb-3">
+                    <span class="input-group-text">Directions</span>
+                    <input type="text" class="form-control" id="directions" placeholder="Preheat the oven to 350 degrees. Add oil to a pan over high heat...">
+                </div> -->
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Ingredients</span>
+                    <textarea type="text" class="form-control" id="ingredients" rows ="3" placeholder="e.g., 2 cups flour">
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Directions</span>
+                    <textarea type="text" class="form-control" id="directions" rows ="3" placeholder="e.g., Preheat the oven to 350 degrees...">
+                </div>
+
+                <!-- <div class="r-directions">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Step #1</span>
+                        <input type="text" class="form-control step-values" id="steps" placeholder="e.g., Preheat the oven to...">
+                    </div> 
+                    <div id="more-steps"></div>
+                </div>
+        
+                <div class="r-ingredients">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text">Ingredient #1</span>
+                        <input type="text" class="form-control ingredient-values" id="ingredients" placeholder="e.g., 2 cups of flour">
+                    </div> 
+                    <div id="more-ingredients"></div>
+                </div> -->
+            </section>
+            <button id="save-recipe-btn" type="button" class="btn btn-success">Save</button>
+            <button id="cancel-create-btn" type="button" class="btn btn-danger">Cancel</button>
+        </div>
     </div>
 
 

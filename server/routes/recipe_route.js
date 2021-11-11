@@ -4,7 +4,37 @@ import { Recipe } from "../model/Recipe.js";
 
 const router = express.Router();
 
-/* ************************* GET ************************* */
+/* ************************* CREATE ************************* */
+
+// create new recipe
+router.post("/", async (req, res) => { 
+    // validate request
+    if (!req.body.name || !req.body.ingredients || !req.body.directions) {
+        return res.status(400).send({error: "Name, ingredients and directions fields cannot be empty"});
+    }
+    const data = {
+        name:           req.body.name,
+        ingredients:    req.body.ingredients,
+        directions:     req.body.directions
+    };
+    
+    const recipe = new Recipe(data);
+
+    try {
+        const savedRecipe = await recipe.save();
+        res.status(200).json(JSON.stringify(savedRecipe)); 
+    } catch(err) {
+        if (isProduction()) {
+            console.error(err);
+        }
+        res.status(500).json({error: "Recipe not saved."}); 
+    }
+});
+
+
+
+
+/* ************************* RETRIEVE ************************* */
 
 // get all recipes
 router.get("/", async (req, res) => {
@@ -25,6 +55,15 @@ router.get("/:name", async (req, res) => {
         res.status(404).send({error: "Recipe not found!"});
     }
 });
+
+
+/* ************************* UPDATE ************************* */
+
+
+
+/* ************************* DELETE ************************* */
+
+
 
 
 

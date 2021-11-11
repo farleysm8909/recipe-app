@@ -11,20 +11,21 @@ mongoose.connect(connection);
 const Schema = mongoose.Schema;
 
 const Recipe = new Schema({
-    name:           {type: String},
-    course:         {type: String},
-    cuisine:        {type: String},
-    category:       {type: String},
-    cookTime:       {type: String},
-    prepTime:       {type: String},
-    totalTime:      {type: String},
-    datePublished:  {type: String},
-    recipeYield:    {type: String},
-    rating:         {type: String},
-    season:         {type: [String]},
-    tags:           {type: [String]},
-    ingredients:    {type: [String]},
-    directions:     {type: String}
+    name:           {type: String, required: true},
+    //img:            {type: String, default: "placeholder.jpg"},
+    // course:         {type: String},
+    // cuisine:        {type: String},
+    // category:       {type: String},
+    // cookTime:       {type: String},
+    // prepTime:       {type: String},
+    // totalTime:      {type: String},
+    // datePublished:  {type: Date, default: () => Date.now()},
+    // recipeYield:    {type: String},
+    // rating:         {type: String},
+    // season:         {type: [String]},
+    // tags:           {type: [String]},
+    ingredients:    {type: [String], required: true},
+    directions:     {type: [String], required: true}
 });
 
 const RecipeModel = mongoose.model("RecipeModel", Recipe);
