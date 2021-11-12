@@ -22,11 +22,17 @@ router.post("/", async (req, res) => {
         }
     });
 
+    // format totalTime
+    const totalTime = req.body.prepTime + req.body.cookTime;
+
     const data = {
         name:           req.body.name,
         course:         req.body.course,
         cuisine:        req.body.cuisine,
         category:       req.body.category,
+        prepTime:       req.body.prepTime,
+        cookTime:       req.body.cookTime,
+        totalTime:      totalTime,
         recipeYield:    req.body.recipeYield,
         rating:         req.body.rating,
         season:         req.body.season,

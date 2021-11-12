@@ -20,3 +20,9 @@ textarea {
 form > * {
     margin: 20px 0;
 }
+
+#inline-checkboxes {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
