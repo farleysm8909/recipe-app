@@ -6,18 +6,31 @@ const router = express.Router();
 
 /* ************************* CREATE ************************* */
 
+
 // create new recipe
 router.post("/", async (req, res) => { 
-    // validate request
-    if (!req.body.name || !req.body.course || !req.body.cuisine || !req.body.category || 
-        !req.body.recipeYield || !req.body.rating || !req.body.ingredients || !req.body.directions) {
-        return res.status(400).send({error: "Name, category, ingredients and directions fields cannot be empty"});
+
+    //validate request
+    if (!req.body.name || !req.body.recipeYield || !req.body.tags || !req.body.ingredients || !req.body.directions) {
+        return res.status(400).send({error: "Name, recipe yield, tags, ingredients and directions fields cannot be empty"});
+    }
+
+    if (!req.body.prepTime || !req.body.cookTime) {
+        return res.status(400).send({error: "Prep and Cook Time fields cannot be empty"});
+    }
+
+    if (!req.body.course || !req.body.cuisine || !req.body.category || !req.body.rating) {
+        return res.status(400).send({error: "Course, cuisine, category and rating dropdowns cannot be empty"});
+    }
+
+    if (!req.body.season) {
+        return res.status(400).send({error: "One or more seasons must be checked"});
     }
 
     const recipes = await Recipe.find();
     // traverse through recipes to check if there is a naming conflict (names must be unique)
     recipes.forEach(recipe => {
-        if (recipe.name == req.body.name) {
+        if (recipe.name.toString().toLowerCase() == req.body.name.toString().toLowerCase()) {
             return res.status(400).send({error: "Recipe name already exists!"});
         }
     });

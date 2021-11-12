@@ -18,7 +18,13 @@ async function createRecipe() {
 
     // format tags
     const tags = document.getElementById("tags").value;
-    const tags_list = tags.split(",");
+    let tags_list;
+    if (tags.includes(",")) {
+        tags_list = tags.split(",");
+    } else {
+        tags_list = tags.split(" ");
+    }
+    
 
     // format ingredients
     const entered_ingredients = document.getElementById("ingredients").value;
