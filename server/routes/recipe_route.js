@@ -1,14 +1,41 @@
 import express from "express";
 import { isProduction } from "../utils/common.js";
 import { Recipe } from "../model/Recipe.js";
+import multer from "multer";
 
 const router = express.Router();
+
+// help from: https://github.com/somteacodes/nodecrudblog/blob/master/routes/blogs.js
+// define storage for the images
+const storage = multer.diskStorage({
+
+    //destination for files
+    destination: function(req, file, callback) {
+        callback(null, "../../client/images/uploads");
+    },
+
+    //add back the extension
+    filename: function(req, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    },
+});
+
+// upload params for multer
+const upload = multer({
+    storage:    storage,
+    limits:     {
+        fieldSize: 1024*1024*2 //2 MB
+    },
+});
 
 /* ************************* CREATE ************************* */
 
 
 // create new recipe
-router.post("/", async (req, res) => { 
+router.post("/", upload.single("image"), async (req, res) => { 
+
+    console.log(req.body);
+    console.log(req.file); // this is undefined
 
     //validate request
     if (!req.body.name || !req.body.recipeYield || !req.body.tags || !req.body.ingredients || !req.body.directions) {
@@ -40,6 +67,7 @@ router.post("/", async (req, res) => {
 
     const data = {
         name:           req.body.name,
+        img:            req.file.filename, // error here
         course:         req.body.course,
         cuisine:        req.body.cuisine,
         category:       req.body.category,
@@ -58,7 +86,8 @@ router.post("/", async (req, res) => {
 
     try {
         const savedRecipe = await recipe.save();
-        res.status(200).json(JSON.stringify(savedRecipe)); 
+        res.redirect(`recipe/${savedRecipe.name}`);
+        //res.status(200).json(JSON.stringify(savedRecipe)); 
     } catch(err) {
         if (isProduction()) {
             console.error(err);
@@ -75,7 +104,7 @@ router.post("/", async (req, res) => {
 // get all recipes
 router.get("/", async (req, res) => {
     try {
-        const recipes = await Recipe.find();
+        const recipes = await Recipe.find().sort({ rating: 'desc' });
         res.send(recipes);
     } catch(err) {
         res.status(404).send({error: "Recipes not found!"});

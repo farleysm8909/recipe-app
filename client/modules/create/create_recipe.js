@@ -33,10 +33,6 @@ async function createRecipe() {
     // format directions
     const entered_directions = document.getElementById("directions").value;
     const directions_list = entered_directions.split("\n");
-
-    // format prep and cook time
-    const prep_time = Number(document.getElementById("prep-time").value); // change from string to number
-    const cook_time = Number(document.getElementById("cook-time").value);
         
     const data = {
         name:           document.getElementById("name").value,
@@ -44,9 +40,9 @@ async function createRecipe() {
         cuisine:        document.getElementById("cuisine").value,
         category:       document.getElementById("category").value, 
         recipeYield:    document.getElementById("recipe-yield").value,
-        rating:         document.getElementById("rating").value,
-        prepTime:       prep_time,
-        cookTime:       cook_time,
+        rating:         Number(document.getElementById("rating").value),
+        prepTime:       Number(document.getElementById("prep-time").value),
+        cookTime:       Number(document.getElementById("cook-time").value),
         season:         checked_seasons,
         tags:           tags_list,
         ingredients:    ingredient_list,
