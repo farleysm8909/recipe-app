@@ -1,41 +1,16 @@
 import express from "express";
 import { isProduction } from "../utils/common.js";
 import { Recipe } from "../model/Recipe.js";
-import multer from "multer";
+import { readFileSync } from 'fs';
+
 
 const router = express.Router();
-
-// help from: https://github.com/somteacodes/nodecrudblog/blob/master/routes/blogs.js
-// define storage for the images
-const storage = multer.diskStorage({
-
-    //destination for files
-    destination: function(req, file, callback) {
-        callback(null, "../../client/images/uploads");
-    },
-
-    //add back the extension
-    filename: function(req, file, callback) {
-        callback(null, Date.now() + file.originalname);
-    },
-});
-
-// upload params for multer
-const upload = multer({
-    storage:    storage,
-    limits:     {
-        fieldSize: 1024*1024*2 //2 MB
-    },
-});
 
 /* ************************* CREATE ************************* */
 
 
 // create new recipe
-router.post("/", upload.single("image"), async (req, res) => { 
-
-    console.log(req.body);
-    console.log(req.file); // this is undefined
+router.post("/", async (req, res) => { 
 
     //validate request
     if (!req.body.name || !req.body.recipeYield || !req.body.tags || !req.body.ingredients || !req.body.directions) {
@@ -56,18 +31,19 @@ router.post("/", upload.single("image"), async (req, res) => {
 
     const recipes = await Recipe.find();
     // traverse through recipes to check if there is a naming conflict (names must be unique)
-    recipes.forEach(recipe => {
-        if (recipe.name.toString().toLowerCase() == req.body.name.toString().toLowerCase()) {
+    for (let i = 0; i < recipes.length; i++) {
+        if (recipes[i].name.toString().toLowerCase() == req.body.name.toString().toLowerCase()) {
+            console.log("RECIPE ALREADY EXISTS");
             return res.status(400).send({error: "Recipe name already exists!"});
         }
-    });
+    }
 
     // format totalTime
     const totalTime = req.body.prepTime + req.body.cookTime;
 
     const data = {
         name:           req.body.name,
-        img:            req.file.filename, // error here
+        //img:            req.body.img, // ??
         course:         req.body.course,
         cuisine:        req.body.cuisine,
         category:       req.body.category,
@@ -84,9 +60,16 @@ router.post("/", upload.single("image"), async (req, res) => {
     
     const recipe = new Recipe(data);
 
+    const filename = req.body.img;
+    const img_path = `../../client/images/${filename}`;
+
+    recipe.img.filename = filename;
+    //recipe.img.data = readFileSync(img_path); // error here because the image isn't uploading to the folder ie path does not exist. How to upload to folder??
+    //recipe.img.contentType = 'image/jpg';
+
     try {
         const savedRecipe = await recipe.save();
-        res.redirect(`recipe/${savedRecipe.name}`);
+        res.status(200).redirect(`recipe/${savedRecipe.name}`);
         //res.status(200).json(JSON.stringify(savedRecipe)); 
     } catch(err) {
         if (isProduction()) {
@@ -95,7 +78,6 @@ router.post("/", upload.single("image"), async (req, res) => {
         res.status(500).json({error: "Recipe not saved."}); 
     }
 });
-
 
 
 

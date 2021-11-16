@@ -4,6 +4,22 @@ import { createRecipe } from "./create/create_recipe.js";
 window.addEventListener('DOMContentLoaded', () => {
     displayHomepage();
 
+    // doesn't work
+    // let filename = "placeholder.jpg";
+    // watch for change to image upload input element, need to grab value for path
+    // https://stackoverflow.com/questions/1804745/get-the-filename-of-a-fileupload-in-a-document-through-javascript/19807149
+    // document.getElementById("image").addEventListener("onchange", () => {
+    //     console.log("inside index.js onchange event listener");
+    //     const file = document.getElementById("image").files[0];
+    //     filename = file.name;
+    //     console.log(filename);
+    // });
+
+    document.getElementById("form").addEventListener("submit", function(e) {
+        e.preventDefault();
+        createRecipe();
+    });
+
     // add event listeners for statically displayed buttons
 
    // create recipe btn
@@ -20,14 +36,14 @@ window.addEventListener('DOMContentLoaded', () => {
    } 
 
     // save recipe btn
-    const save_btn = document.querySelector("#save-recipe-btn");
-    if ( save_btn ) {
-        save_btn.addEventListener("click", () => {
-            createRecipe();
-        });
-    } else {
-        console.error(`Unable to bind to target! Debug Required.`);
-    }
+    // const save_btn = document.querySelector("#save-recipe-btn");
+    // if ( save_btn ) {
+    //     save_btn.addEventListener("click", () => {
+    //         createRecipe();
+    //     });
+    // } else {
+    //     console.error(`Unable to bind to target! Debug Required.`);
+    // }
 
     // cancel save btn
     const cancel_btn = document.querySelector("#cancel-create-btn");

@@ -25,7 +25,6 @@ async function createRecipe() {
         tags_list = tags.split(" ");
     }
     
-
     // format ingredients
     const entered_ingredients = document.getElementById("ingredients").value;
     const ingredient_list = entered_ingredients.split("\n");
@@ -33,9 +32,17 @@ async function createRecipe() {
     // format directions
     const entered_directions = document.getElementById("directions").value;
     const directions_list = entered_directions.split("\n");
-        
+
+    // format image filename
+    const fakepath = document.getElementById("image").value;
+    let filename = "placeholder.jpg";
+    if (fakepath) {
+        filename = fakepath.substring(12, fakepath.length); // grab only the filename from "C:\fakepath\${filename}"
+    }
+    
     const data = {
         name:           document.getElementById("name").value,
+        img:            filename,
         course:         document.getElementById("course").value, // grabs selected val from dropdown
         cuisine:        document.getElementById("cuisine").value,
         category:       document.getElementById("category").value, 
