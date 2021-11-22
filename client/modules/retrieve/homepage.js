@@ -1,4 +1,7 @@
+import { displaySingleRecipe } from "./single_recipe.js";
+
 async function displayHomepage() {
+
     const url = "http://127.0.0.1:3000/recipe";
 
     const fetchResponse = await fetch(url);
@@ -31,6 +34,19 @@ async function displayHomepage() {
             <h3>${cased_name}</h3>
         </div>`;
     });
+
+    // event listener for recipe-card divs
+    const recipe_divs = document.getElementsByClassName("recipe-card");
+    const recipe_names = document.getElementsByTagName("h3");
+    if ( recipe_divs && recipe_names ) {
+        for (let i = 0; i < recipe_divs.length; i++) {
+            recipe_divs[i].addEventListener("click", () => {
+                displaySingleRecipe(recipe_names[i].textContent);
+                document.getElementById("homepage-container").style.display = "none";
+                document.getElementById("single-recipe-container").style.display = "block";
+            });
+        }
+    }
 
 }
 

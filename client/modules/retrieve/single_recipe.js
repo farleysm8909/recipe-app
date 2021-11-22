@@ -1,5 +1,7 @@
 async function displaySingleRecipe(recipe_name) {
-    const url = `http://127.0.0.1:3000/recipe/${recipe_name}`;
+    const lowercase_name = recipe_name.toLowerCase();
+
+    const url = `http://127.0.0.1:3000/recipe/${lowercase_name}`;
 
     const fetchResponse = await fetch(url);
     const jsonResponse = await fetchResponse.json(); 
@@ -7,10 +9,10 @@ async function displaySingleRecipe(recipe_name) {
     let single_recipe = document.getElementById("single-recipe-container").innerHTML;
     single_recipe = "";  // clear page before adding onto it
 
-    const name = `<h1>${jsonResponse.name}</h1>`;
+    const name = `<h1>${recipe_name}</h1>`;
     // image comes next - how to store in db? https://www.youtube.com/watch?v=3TfpgLfJYoo
     // start ul
-    const img = `<img src="images/placeholder.jpg alt="chicken parmesan">`; //`<img src="images/{jsonResponse.img.filename} alt="chicken parmesan">`;
+    const img = `<img src="images/placeholder.jpg" alt="chicken parmesan">`; //`<img src="images/{jsonResponse.img.filename} alt="chicken parmesan">`;
 
     const prep_time = `<ul><li>${jsonResponse.prepTime}</li>`;
     const cook_time = `<li>${jsonResponse.cookTime}</li>`;
@@ -54,8 +56,8 @@ async function displaySingleRecipe(recipe_name) {
     });
     directions += `</ol>`;
 
-    document.getElementById("single-recipe").innerHTML += 
-    `<div class="single-recipe-container">
+    document.getElementById("single-recipe-container").innerHTML += 
+    `<div>
         ${name}
         ${img}
         ${prep_time} ${cook_time} ${total_time} ${r_yield} ${rating}

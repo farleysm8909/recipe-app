@@ -1,5 +1,6 @@
 import { displayHomepage } from "./retrieve/homepage.js";
 import { createRecipe } from "./create/create_recipe.js";
+import { displaySingleRecipe } from "./retrieve/single_recipe.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     displayHomepage();
@@ -56,6 +57,8 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error(`Unable to bind to target! Debug Required.`);
     } 
- 
 
+    
+    
+ 
 });
