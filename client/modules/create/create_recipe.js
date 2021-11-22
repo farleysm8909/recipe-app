@@ -41,7 +41,7 @@ async function createRecipe() {
     }
     
     const data = {
-        name:           document.getElementById("name").value,
+        name:           document.getElementById("name").value.toLowerCase(),
         img:            filename,
         course:         document.getElementById("course").value, // grabs selected val from dropdown
         cuisine:        document.getElementById("cuisine").value,

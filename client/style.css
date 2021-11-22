@@ -26,3 +26,28 @@ form > * {
     flex-direction: row;
     justify-content: space-between;
 }
+
+#recipes-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.recipe-card {
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* default justification also appealing */
+}
+
+/* descendant selectors */
+.recipe-card img {
+    max-width: 350px;
+    height: auto; 
+}
+
+.recipe-card h3 {
+    
+}
+

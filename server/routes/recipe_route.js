@@ -33,7 +33,6 @@ router.post("/", async (req, res) => {
     // traverse through recipes to check if there is a naming conflict (names must be unique)
     for (let i = 0; i < recipes.length; i++) {
         if (recipes[i].name.toString().toLowerCase() == req.body.name.toString().toLowerCase()) {
-            console.log("RECIPE ALREADY EXISTS");
             return res.status(400).send({error: "Recipe name already exists!"});
         }
     }
@@ -96,7 +95,7 @@ router.get("/", async (req, res) => {
 // get one recipe by name
 router.get("/:name", async (req, res) => {
     try {
-        const recipe = await Recipe.findOne({name: req.params.name});
+        const recipe = await Recipe.findOne({name: req.params.name.toLowerCase()});
         res.send(recipe);
     } catch(err) {
         res.status(404).send({error: "Recipe not found!"});
