@@ -6,9 +6,6 @@ async function displaySingleRecipe(recipe_name) {
     const fetchResponse = await fetch(url);
     const jsonResponse = await fetchResponse.json(); 
 
-    document.getElementById("single-recipe-container").innerHTML = "";
-    //single_recipe = "";  // clear page before adding onto it
-
     // format rating
     let stars = "";
     let rating = Number(jsonResponse.rating);
@@ -21,37 +18,33 @@ async function displaySingleRecipe(recipe_name) {
 
     const name = `<h1>${recipe_name}</h1>`;
     // image comes next - how to store in db? https://www.youtube.com/watch?v=3TfpgLfJYoo
-    // start ul
     const img = `<img src="images/placeholder.jpg" alt="chicken parmesan">`; //`<img src="images/{jsonResponse.img.filename} alt="chicken parmesan">`;
 
-    const prep_time = `<p><span>Prep Time:</span> ${jsonResponse.prepTime} minutes</p>`;
-    const cook_time = `<p><span>Cook Time:</span> ${jsonResponse.cookTime} minutes</p>`;
-    const total_time = `<p><span>Total Time:</span> ${jsonResponse.totalTime} minutes</p>`;
-    const r_yield = `<p><span>Yield:</span> ${jsonResponse.recipeYield}</p>`;
-    rating = `<p><span>Rating:</span> ${stars} </p>`;
+    const prep_time = `<span>Prep Time:</span> ${jsonResponse.prepTime} minutes`;
+    const cook_time = `<span>Cook Time:</span> ${jsonResponse.cookTime} minutes`;
+    const total_time = `<span>Total Time:</span> ${jsonResponse.totalTime} minutes`;
+    const r_yield = `<span>Yield:</span> ${jsonResponse.recipeYield}`;
+    rating = `<span>Rating:</span> ${stars}`;
 
-    const category = `<p><span>Category:</span> ${jsonResponse.category}</p>`;
-    const course = `<p><span>Course:</span> ${jsonResponse.course}</p>`;
-    const cuisine = `<p><span>Cuisine:</span> ${jsonResponse.cuisine}</p>`;
-    const date = `<p><span>Date Published:</span> ${str_date.toDateString().substring(4, str_date.length)}</p>`; // Nov 21 2021 instead of Sun Nov 21 2021
+    const category = `<span>Category:</span> ${jsonResponse.category}`;
+    const course = `<span>Course:</span> ${jsonResponse.course}`;
+    const cuisine = `<span>Cuisine:</span> ${jsonResponse.cuisine}`;
+    const date = `<span>Date Published:</span> ${str_date.toDateString().substring(4, str_date.length)}`; // Nov 21 2021 instead of Sun Nov 21 2021
 
     const seasons_array = jsonResponse.season;
     const tags_array = jsonResponse.tags;
     const ingredients_array = jsonResponse.ingredients;
     const directions_string = `<p>${jsonResponse.directions}</p>`;
 
-    // let season_array = recipe_string[0].split("   ");
-    let seasons = `<p><span>Season(s) Best Enjoyed:</span> `;
+    let seasons = `<span>Season(s) Best Enjoyed:</span> `;
     seasons_array.forEach(season => {
         seasons += `${season} `;
     });
-    seasons += `</p>`;
 
-    let tags = `<p><span>Tags:</span> `;
+    let tags = `<span>Tags:</span> `;
     tags_array.forEach(tag => {
         tags += `${tag} `;
     });
-    tags += `</p>`;
 
     let ingredients = `<span>Ingredients</span><ul>`;
     ingredients_array.forEach(ing => {
@@ -66,22 +59,21 @@ async function displaySingleRecipe(recipe_name) {
     });
     directions += `</ol>`;
 
-    document.getElementById("single-recipe-container").innerHTML += 
-    `
-    ${name}
-    ${img}
-    <section class="recipe_details">
-    <div>
-        ${prep_time} ${cook_time} ${total_time} 
-    </div>
-    <div>
-        ${r_yield} ${rating}
-        ${category} ${course} ${cuisine} ${date} ${seasons} ${tags} 
-        ${ingredients}
-        ${directions}
-    </div>
-    </section>`;
-    
+    document.getElementById("recipe-heading").innerHTML = `${name}${img}`;
+    document.getElementById("prep").innerHTML = prep_time;
+    document.getElementById("cook").innerHTML = cook_time;
+    document.getElementById("tota").innerHTML = total_time;
+    document.getElementById("yiel").innerHTML = r_yield;
+    document.getElementById("rati").innerHTML = rating;
+    document.getElementById("date").innerHTML = date;
+    document.getElementById("cate").innerHTML = category;
+    document.getElementById("cour").innerHTML = course;
+    document.getElementById("cuis").innerHTML = cuisine;
+    document.getElementById("seas").innerHTML = seasons;
+    document.getElementById("tag").innerHTML = tags;
+    document.getElementById("ingr").innerHTML = ingredients;
+    document.getElementById("dire").innerHTML = directions;
+
 }
 
 export { displaySingleRecipe };

@@ -1,5 +1,4 @@
 import { displayHomepage } from "../retrieve/homepage.js";
-//import { retrieveRecipe } from "./retrieve.js";
 
 async function createRecipe() {
     let general_error_msg = document.getElementById("general-error-msg");
