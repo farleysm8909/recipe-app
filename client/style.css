@@ -1,4 +1,4 @@
-#create-recipe-container, #single-recipe-container {
+#create-recipe-container, #single-recipe-container, #back-btn, #edit-btn {
     display: none;
 }
 
@@ -6,7 +6,7 @@
     display: none;
 }
 
-textarea {
+/* textarea {
     background: url(http://i.imgur.com/2cOaJ.png);
     background-attachment: local;
     background-repeat: no-repeat;
@@ -15,7 +15,7 @@ textarea {
     border-color:#ccc;
     resize: none;
     height: auto;
-}
+} */
 
 form > * {
     margin: 20px 0;
@@ -42,10 +42,7 @@ form > * {
 }
 
 #single-recipe-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /*text-align: center;*/
+    text-align: center;
 }
 
 #recipe_details {
@@ -54,8 +51,49 @@ form > * {
     flex-wrap: wrap;
 }
 
-.my_col {
-    display: inline;
+h1 {
+    margin-bottom: 30px;
+}
+
+
+body {
+    position: relative;
+    min-height: 100vh;
+}
+
+.container {
+    padding-bottom: 50px;
+}
+  
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color:antiquewhite;
+    text-align: center;
+    font-size: 12pt;
+    padding: 15px;
+}
+
+#back-btn {
+    float: left;
+    margin-top: 30px;
+    background-color: #e4e4e6;
+
+}
+
+#back-btn:hover {
+    background-color: #cdcfd2;
+}
+
+#edit-btn {
+    float: right;
+    margin-top: 30px;
+}
+
+
+#recipe-heading {
+    display: inline-block;
 }
 
 
@@ -68,6 +106,7 @@ form > * {
 
 .recipe-card h3 {
     font-size: 20pt;
+    margin-top: 10px;
 }
 
 #single-recipe-container span {
@@ -79,7 +118,8 @@ form > * {
     margin: 30px;
 }
 
-#recipe-heading img {
+/* single recipe */
+#recipe-img img {
     width: 100%;
     max-height: 600px;
     object-fit: cover;
@@ -88,8 +128,40 @@ form > * {
 
 #recipe-details > * {
     font-size: 14pt;
+    text-align: left;
 }
 
+/* Adjacent selectors */
 
+/* homepage */
+.recipe-img-container {
+    position: relative;
+    width: 100%;
+}
+
+.recipe-img-container + img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+  
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .2s ease;
+    background-color: #d1d1d1;
+}
+  
+.recipe-img-container:hover .overlay {
+    opacity: 0.5;
+}
+
+  
 
 

@@ -5,6 +5,8 @@ import { displaySingleRecipe } from "./retrieve/single_recipe.js";
 window.addEventListener('DOMContentLoaded', () => {
     displayHomepage();
 
+    document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
+
     // doesn't work
     // let filename = "placeholder.jpg";
     // watch for change to image upload input element, need to grab value for path
@@ -52,6 +54,20 @@ window.addEventListener('DOMContentLoaded', () => {
         cancel_btn.addEventListener("click", () => {
             document.getElementById("create-recipe-container").style.display = "none";
             displayHomepage();
+            document.getElementById("homepage-container").style.display = "block";
+        });
+    } else {
+        console.error(`Unable to bind to target! Debug Required.`);
+    } 
+
+    // back to homepage btn (from single page)
+    const back_btn = document.querySelector("#back-btn");
+    if ( back_btn ) {
+        back_btn.addEventListener("click", () => {
+            document.getElementById("single-recipe-container").style.display = "none";
+            displayHomepage();
+            document.getElementById("back-btn").style.display = "none";
+            document.getElementById("edit-btn").style.display = "none";
             document.getElementById("homepage-container").style.display = "block";
         });
     } else {

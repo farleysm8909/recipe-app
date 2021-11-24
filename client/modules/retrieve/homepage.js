@@ -25,7 +25,11 @@ async function displayHomepage() {
                 cased_name += name[i];
             }
         }
-        let img = `<img src="images/placeholder.jpg" alt="chicken parmesan">`; //`<img src="../../images/{jsonResponse.img.filename} alt="chicken parmesan">`;
+        let img = `
+        <div class="recipe-img-container">
+            <img src="images/placeholder.jpg" alt="chicken parmesan">
+            <div class="overlay"></div>
+        </div>`; //`<img src="../../images/{jsonResponse.img.filename} alt="chicken parmesan">`;
         // image comes next - how to store in db? https://www.youtube.com/watch?v=3TfpgLfJYoo
         
         recipes_container.innerHTML += 

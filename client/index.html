@@ -15,10 +15,16 @@
             <h1>My Recipes</h1>
             <button id="create-btn" type="button" class="btn btn-primary">Create Recipe</button>
             <div id="recipes-container"></div>
+          </div>
+
+
         </div>
 
-        <div id="single-recipe-container">
+        <div id="single-recipe-container" class="container">
+            <button id="back-btn" type="button" class="btn btn-secondary">&#8592; Back</button>
             <div id="recipe-heading"></div>
+            <button id="edit-btn" type="button" class="btn btn-primary">Edit Recipe</button>
+            <div id="recipe-img"></div>
             <div id="recipe-details">
                 <div class="row">
                     <div class="col-md-4" id="prep"></div>
@@ -56,12 +62,12 @@
             <form id="form" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
                 <!-- Name -->
                 <div class="col-md-6">
-                  <label for="name" class="form-label">Name</label>
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Recipe Name" required>
-                  <div class="valid-feedback">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Recipe Name" required>
+                <div class="valid-feedback">
                     Looks good!
-                  </div>
-                  <div id="name-error-msg" class="invalid-feedback"></div>
+                </div>
+                <div id="name-error-msg" class="invalid-feedback"></div>
                 </div>
 
                 <!-- Recipe Yield -->
@@ -227,7 +233,11 @@
                 <button id="cancel-create-btn" type="button" class="btn btn-danger">Cancel</button>
             </form>
         </div>
+        
     </div>
+    <footer>
+        &copy; <span id="copyright_year"></span> Samantha Farley
+    </footer>
 
 
     <!-- jQuery library -->

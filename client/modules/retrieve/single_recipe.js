@@ -59,7 +59,11 @@ async function displaySingleRecipe(recipe_name) {
     });
     directions += `</ol>`;
 
-    document.getElementById("recipe-heading").innerHTML = `${name}${img}`;
+    document.getElementById("back-btn").style.display = "block";
+    document.getElementById("edit-btn").style.display = "block";
+
+    document.getElementById("recipe-heading").innerHTML = `${name}`;
+    document.getElementById("recipe-img").innerHTML = `${img}`;
     document.getElementById("prep").innerHTML = prep_time;
     document.getElementById("cook").innerHTML = cook_time;
     document.getElementById("tota").innerHTML = total_time;
