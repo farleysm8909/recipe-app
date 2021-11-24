@@ -34,7 +34,7 @@ async function displaySingleRecipe(recipe_name) {
     const seasons_array = jsonResponse.season;
     const tags_array = jsonResponse.tags;
     const ingredients_array = jsonResponse.ingredients;
-    const directions_string = `<p>${jsonResponse.directions}</p>`;
+    const directions_array = jsonResponse.directions;
 
     let seasons = `<span>Season(s) Best Enjoyed:</span> `;
     seasons_array.forEach(season => {
@@ -52,10 +52,16 @@ async function displaySingleRecipe(recipe_name) {
     });
     ingredients += `</ul>`;
 
-    let directions_array = directions_string.split("."); // divides string up by sentences and stores in array
+    // let directions_array = directions_string.split("."); // divides string up by sentences and stores in array
+    // let directions = `<span>Directions</span><ol>`;
+    // directions_array.forEach(direction => {
+    //     directions += `<li>${direction}</li>`;
+    // });
+    // directions += `</ol>`;
+
     let directions = `<span>Directions</span><ol>`;
-    directions_array.forEach(direction => {
-        directions += `<li>${direction}</li>`;
+    directions_array.forEach(dir => {
+        directions += `<li>${dir}</li>`;
     });
     directions += `</ol>`;
 

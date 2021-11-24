@@ -31,7 +31,7 @@ form > * {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-between; /* or left to ignore awk space when 2 or 5 recipes */
 }
 
 .recipe-card {
@@ -62,7 +62,7 @@ body {
 }
 
 .container {
-    padding-bottom: 50px;
+    padding-bottom: 100px;
 }
   
 footer {
@@ -95,6 +95,32 @@ footer {
 #recipe-heading {
     display: inline-block;
 }
+
+
+/* homepage */
+.recipe-img-container {
+    position: relative;
+    width: 100%;
+}
+  
+/* https://www.w3schools.com/howto/howto_css_image_overlay.asp */
+.overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .2s ease;
+    background-color: #d1d1d1;
+}
+  
+.recipe-img-container:hover .overlay {
+    opacity: 0.5;
+}
+
 
 
 
@@ -133,34 +159,15 @@ footer {
 
 /* Adjacent selectors */
 
-/* homepage */
-.recipe-img-container {
-    position: relative;
-    width: 100%;
-}
-
 .recipe-img-container + img {
     display: block;
     width: 100%;
     height: auto;
 }
-  
-.overlay {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    opacity: 0;
-    transition: .2s ease;
-    background-color: #d1d1d1;
-}
-  
-.recipe-img-container:hover .overlay {
-    opacity: 0.5;
-}
+
+
+
+
 
   
 
