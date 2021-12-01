@@ -80,7 +80,7 @@ window.addEventListener('DOMContentLoaded', () => {
             document.getElementById("single-recipe-container").style.display = "none";
             document.getElementById("back-btn").style.display = "none";
             document.getElementById("edit-btn").style.display = "none";
-            document.getElementById("homepage-container").style.display = "block";
+            document.getElementById("edit-recipe-container").style.display = "block";
         });
     } else {
         console.error(`Unable to bind to target! Debug Required.`);

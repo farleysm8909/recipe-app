@@ -54,6 +54,13 @@
             </div>
         </div>
 
+        <div id="edit-recipe-container">
+            <h1>Edit a Recipe</h1>
+            
+            <button id="save-edit-btn" type="submit" class="btn btn-success">Save</button>
+            <button id="cancel-edit-btn" type="button" class="btn btn-secondary">Cancel</button>
+            <button id="delete-recipe-btn" type="button" class="btn btn-danger">Delete Recipe</button>
+        </div>
 
         <div id="create-recipe-container">
             <h1>Create a New Recipe</h1>
@@ -179,23 +186,27 @@
                 </div>
 
                 <!-- Ingredients -->
-                <div class="mb-3">
+                <div class="col-md-12 mb-3">
                     <label for="ingredients" class="form-label">Ingredients (one per line)</label>
                     <textarea class="form-control" name="ingredients" id="ingredients" rows="3" placeholder="e.g., 2 cups flour" required></textarea>
                 </div>
 
                 <!-- Directions -->
-                <div class="mb-3">
+                <div class="col-md-12 mb-3">
                     <label for="directions" class="form-label">Directions (one per line)</label>
                     <textarea class="form-control" name="directions" id="directions" rows="3" placeholder="e.g., Preheat the oven to 350 degrees..." required></textarea>
                 </div>
 
-                <div id="general-error-msg"></div>
+                <div id="general-error-msg" class="col-md-12"></div>
 
-                <button id="save-recipe-btn" type="submit" class="btn btn-success">Save</button> <!-- type="submit"-->
-                <button id="cancel-create-btn" type="button" class="btn btn-danger">Cancel</button>
+                <div class="col-md-12">
+                    <button id="save-recipe-btn" type="submit" class="btn btn-success">Save</button> <!-- type="submit"-->
+                    <button id="cancel-create-btn" type="button" class="btn btn-secondary">Cancel</button>
+                </div>
             </form>
         </div>
+
+
         
     </div>
     <footer>

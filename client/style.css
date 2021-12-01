@@ -1,4 +1,4 @@
-#create-recipe-container, #single-recipe-container, #back-btn, #edit-btn {
+#create-recipe-container, #single-recipe-container, #edit-recipe-container, #back-btn, #edit-btn {
     display: none;
 }
 
@@ -58,20 +58,24 @@ footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color:antiquewhite;
+    background-color: #e4e4e6;
     text-align: center;
-    font-size: 12pt;
+    font-size: 10pt;
     padding: 15px;
+}
+
+.btn {
+    min-width: 75px;
+    margin: 10px;
 }
 
 #back-btn {
     float: left;
     margin-top: 30px;
     background-color: #e4e4e6;
-
 }
 
-#back-btn:hover {
+.btn-secondary:hover, #back-btn:hover {
     background-color: #cdcfd2;
 }
 
