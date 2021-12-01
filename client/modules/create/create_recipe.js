@@ -1,4 +1,4 @@
-import { displayHomepage } from "../retrieve/homepage.js";
+import { displaySingleRecipe } from "../retrieve/single_recipe.js";
 
 async function createRecipe() {
     let general_error_msg = document.getElementById("general-error-msg");
@@ -14,6 +14,12 @@ async function createRecipe() {
             checked_seasons.push(checkboxes[i].value);
         }
     }
+    // check if none selected
+    if (checked_seasons.length == 0) {
+        general_error_msg.innerHTML = "Please check at least one season";
+        general_error_msg.style.display = "block";
+        return false;
+     }
 
     // format tags
     const tags = document.getElementById("tags").value;
@@ -71,55 +77,10 @@ async function createRecipe() {
         general_error_msg.innerHTML = jsonResponse.error;
     } else {
         document.getElementById("create-recipe-container").style.display = "none";
-        displayHomepage();
-        document.getElementById("homepage-container").style.display = "block";
+        displaySingleRecipe(jsonResponse.name);
+        document.getElementById("single-recipe-container").style.display = "block";
     }
     
 }
-
-
-// async function saveStep() {
-//     const url = `http://127.0.0.1:3000/recipe`;
-//     const fetchResponse = await fetch(url);
-//     const jsonResponse = await fetchResponse.json();
-
-//     // figure out which recipe is being added to
-//     const recipe_name = document.getElementById("retrieved-recipe").textContent;
-//     let recIndex;
-
-//     for (let i=0; i<jsonResponse.length; i++) {
-//         if (jsonResponse[i].name === recipe_name) {
-//             recIndex = i;
-//         }
-//     } 
-
-//     const recipeId = jsonResponse[recIndex]._id;
-//     let steps = jsonResponse[recIndex].steps[0];
-
-//     const url2 = `http://127.0.0.1:3000/recipe/${recipeId}/step`;
-
-//     // define step - the value to replace old step
-//     steps += "   " + document.getElementById("newsteps").value;
-
-//     const data = {
-//         steps:          steps
-//     };
-    
-//     const config = {
-//         method: "post", 
-//         mode: "cors", 
-//         cache: "no-cache", 
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(data)
-//     };
-
-//     const fetchResponse2 = await fetch(url2, config);       
-//     const jsonResponse2 = await fetchResponse2.json(); 
-
-//     document.getElementById("step-entry-fields").style.display = "none";
-//     document.getElementById("saveStepBtn").style.display = "none";
-//     retrieveRecipe(recIndex);
-
-// }
 
 export { createRecipe };

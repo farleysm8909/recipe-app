@@ -68,7 +68,8 @@ router.post("/", async (req, res) => {
 
     try {
         const savedRecipe = await recipe.save();
-        res.status(200).redirect(`recipe/${savedRecipe.name}`);
+        //res.status(200).redirect(`recipe/${savedRecipe.name}`);
+        res.status(200).send(savedRecipe);
         //res.status(200).json(JSON.stringify(savedRecipe)); 
     } catch(err) {
         if (isProduction()) {
@@ -86,7 +87,7 @@ router.post("/", async (req, res) => {
 router.get("/", async (req, res) => {
     try {
         const recipes = await Recipe.find().sort({ rating: 'desc' });
-        res.send(recipes);
+        res.status(200).send(recipes);
     } catch(err) {
         res.status(404).send({error: "Recipes not found!"});
     }
@@ -96,7 +97,7 @@ router.get("/", async (req, res) => {
 router.get("/:name", async (req, res) => {
     try {
         const recipe = await Recipe.findOne({name: req.params.name.toLowerCase()});
-        res.send(recipe);
+        res.status(200).send(recipe);
     } catch(err) {
         res.status(404).send({error: "Recipe not found!"});
     }

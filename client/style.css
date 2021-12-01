@@ -2,23 +2,12 @@
     display: none;
 }
 
-.valid-feedback, .invalid-feedback {
+.invalid-feedback {
     display: none;
 }
 
-/* textarea {
-    background: url(http://i.imgur.com/2cOaJ.png);
-    background-attachment: local;
-    background-repeat: no-repeat;
-    padding-left: 35px;
-    padding-top: 10px;
-    border-color:#ccc;
-    resize: none;
-    height: auto;
-} */
-
-form > * {
-    margin: 20px 0;
+.invalid-feedback {
+    color: #cc0000;
 }
 
 #inline-checkboxes {
@@ -91,11 +80,9 @@ footer {
     margin-top: 30px;
 }
 
-
 #recipe-heading {
     display: inline-block;
 }
-
 
 /* homepage */
 .recipe-img-container {
@@ -121,6 +108,9 @@ footer {
     opacity: 0.5;
 }
 
+#general-error-msg {
+    color: #cc0000;
+}
 
 
 
@@ -131,6 +121,7 @@ footer {
 }
 
 .recipe-card h3 {
+    max-width: 350px;
     font-size: 20pt;
     margin-top: 10px;
 }
@@ -155,6 +146,10 @@ footer {
 #recipe-details > * {
     font-size: 14pt;
     text-align: left;
+}
+
+form > * {
+    margin: 20px 0;
 }
 
 /* Adjacent selectors */

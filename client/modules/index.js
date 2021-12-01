@@ -1,6 +1,5 @@
 import { displayHomepage } from "./retrieve/homepage.js";
 import { createRecipe } from "./create/create_recipe.js";
-import { displaySingleRecipe } from "./retrieve/single_recipe.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     displayHomepage();
@@ -74,7 +73,18 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error(`Unable to bind to target! Debug Required.`);
     } 
 
-    
+    // edit recipe btn (from single page)
+    const edit_btn = document.querySelector("#edit-btn");
+    if ( edit_btn ) {
+        edit_btn.addEventListener("click", () => {
+            document.getElementById("single-recipe-container").style.display = "none";
+            document.getElementById("back-btn").style.display = "none";
+            document.getElementById("edit-btn").style.display = "none";
+            document.getElementById("homepage-container").style.display = "block";
+        });
+    } else {
+        console.error(`Unable to bind to target! Debug Required.`);
+    }
     
  
 });

@@ -58,85 +58,58 @@
         <div id="create-recipe-container">
             <h1>Create a New Recipe</h1>
             <div id="create-recipe-response"></div>
-            <form id="form" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
+            <form id="form" class="row g-3 needs-validation" action="modules/create/create_recipe.php" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
                 <!-- Name -->
                 <div class="col-md-6">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="Recipe Name" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div id="name-error-msg" class="invalid-feedback"></div>
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Recipe Name" required>
                 </div>
 
                 <!-- Recipe Yield -->
                 <div class="col-md-3">
                     <label for="recipe-yield" class="form-label">Recipe Yield</label>
-                    <input type="text" class="form-control" name="recipe-yield" id="recipe-yield" placeholder="e.g., 4-6 servings">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div id="yield-error-msg" class="invalid-feedback"></div>
+                    <input type="text" class="form-control" name="recipe-yield" id="recipe-yield" placeholder="e.g., 4-6 servings" required>
                 </div>
 
                 <!-- Image -->
                 <div class="col-md-3">
                     <label for="image" class="form-label">Upload Image</label>
                     <input type="file" class="form-control-file" name="image" id="image">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div id="image-error-msg" class="invalid-feedback"></div>
                 </div>
 
                 <!-- Tags -->
                 <div class="col-md-6">
                     <label for="tags" class="form-label">Tag Words</label>
-                    <input type="text" class="form-control" name="tags" id="tags" placeholder="e.g., chicken, crispy, spicy...">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div id="tags-error-msg" class="invalid-feedback"></div>
+                    <input type="text" class="form-control" name="tags" id="tags" placeholder="e.g., chicken, crispy, spicy..." required>
                 </div>
 
                 <!-- Prep Time -->
                 <div class="col-md-3">
                     <label for="prep-time" class="form-label">Prep Time (minutes)</label>
-                    <input type="number" class="form-control" name="prep-time" id="prep-time" placeholder="e.g., 30">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div id="prep-time-error-msg" class="invalid-feedback"></div>
+                    <input type="number" class="form-control" name="prep-time" id="prep-time" placeholder="e.g., 30" required>
                 </div>
 
                 <!-- Cook Time -->
                 <div class="col-md-3">
                     <label for="cook-time" class="form-label">Cook Time (minutes)</label>
-                    <input type="number" class="form-control" name="cook-time" id="cook-time" placeholder="e.g., 120">
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <div id="cook-time-error-msg" class="invalid-feedback"></div>
+                    <input type="number" class="form-control" name="cook-time" id="cook-time" placeholder="e.g., 120" required>
                 </div>
 
                 <!-- Category -->
                 <div class="col-md-2">
                     <label for="category" class="form-label">Category</label>
-                    <select id="category" name="category" class="form-select">
+                    <select id="category" name="category" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
                         <option value="Cooking">Cooking</option>
                         <option value="Baking">Baking</option>
                         <option value="Mixology">Mixology</option>
                     </select>
-                    <div class="invalid-feedback">
-                        Please select a valid category.
-                    </div>
                 </div>
 
                 <!-- Course -->
                 <div class="col-md-2">
                     <label for="course" class="form-label">Course</label>
-                    <select id="course" name="course" class="form-select">
+                    <select id="course" name="course" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
                         <option value="Appetizer">Appetizer</option>
                         <option value="Lunch">Lunch</option>
@@ -144,15 +117,12 @@
                         <option value="Dinner">Dinner</option>
                         <option value="Dessert">Dessert</option>
                     </select>
-                    <div class="invalid-feedback">
-                        Please select a valid course.
-                    </div>
                 </div>
 
                 <!-- Cuisine -->
                 <div class="col-md-2">
                     <label for="cuisine" class="form-label">Cuisine</label>
-                    <select id="cuisine" name="cuisine" class="form-select">
+                    <select id="cuisine" name="cuisine" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
                         <option value="American">American</option>
                         <option value="British">British</option>
@@ -170,15 +140,12 @@
                         <option value="Thai">Thai</option>
                         <option value="Other">Other</option>
                     </select>
-                    <div class="invalid-feedback">
-                        Please select a valid cuisine.
-                    </div>
                 </div>
 
                 <!-- Rating -->
                 <div class="col-md-2">
                     <label for="rating" class="form-label">Rating</label>
-                    <select id="rating" name="rating" class="form-select">
+                    <select id="rating" name="rating" class="form-select" required>
                         <option selected disabled value="">Choose...</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -186,9 +153,6 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    <div class="invalid-feedback">
-                        Please select a valid rating.
-                    </div>
                 </div>
 
                 <!-- Season -->
@@ -217,13 +181,13 @@
                 <!-- Ingredients -->
                 <div class="mb-3">
                     <label for="ingredients" class="form-label">Ingredients (one per line)</label>
-                    <textarea class="form-control" name="ingredients" id="ingredients" rows="3" placeholder="e.g., 2 cups flour"></textarea>
+                    <textarea class="form-control" name="ingredients" id="ingredients" rows="3" placeholder="e.g., 2 cups flour" required></textarea>
                 </div>
 
                 <!-- Directions -->
                 <div class="mb-3">
                     <label for="directions" class="form-label">Directions (one per line)</label>
-                    <textarea class="form-control" name="directions" id="directions" rows="3" placeholder="e.g., Preheat the oven to 350 degrees..."></textarea>
+                    <textarea class="form-control" name="directions" id="directions" rows="3" placeholder="e.g., Preheat the oven to 350 degrees..." required></textarea>
                 </div>
 
                 <div id="general-error-msg"></div>
