@@ -67,9 +67,11 @@ router.post("/", async (req, res) => {
     //recipe.img.contentType = 'image/jpg';
 
     try {
+        console.log("in recipe_route")
         const savedRecipe = await recipe.save();
-        //res.status(200).redirect(`recipe/${savedRecipe.name}`);
-        res.status(200).send(savedRecipe);
+        console.log("saved recipe " + savedRecipe);
+        res.status(200).redirect(`recipe/${savedRecipe.name}`);
+        //res.status(200).send(savedRecipe);
         //res.status(200).json(JSON.stringify(savedRecipe)); 
     } catch(err) {
         if (isProduction()) {

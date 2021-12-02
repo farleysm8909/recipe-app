@@ -1,13 +1,14 @@
-import { displaySingleRecipe } from "../retrieve/single_recipe.js";
 
-async function createRecipe() {
-    let general_error_msg = document.getElementById("general-error-msg");
-    general_error_msg.innerHTML = ""; // clear former error msgs
+async function displayEditRecipe(recipe_name) {
+    let edit_general_error_msg = document.getElementById("edit-general-error-msg");
+    edit_general_error_msg.innerHTML = ""; // clear former error msgs
 
     const url = "http://127.0.0.1:3000/recipe";
 
+    // how to make default text from db appear in boxes?
+
     // format seasons
-    const checkboxes = document.getElementsByClassName("form-check-input");
+    const checkboxes = document.getElementsByClassName("box");
     let checked_seasons = [];
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {
@@ -16,13 +17,13 @@ async function createRecipe() {
     }
     // check if none selected
     if (checked_seasons.length == 0) {
-        general_error_msg.innerHTML = "Please check at least one season";
-        general_error_msg.style.display = "block";
+        edit_general_error_msg.innerHTML = "Please check at least one season";
+        edit_general_error_msg.style.display = "block";
         return false;
      }
 
     // format tags
-    const tags = document.getElementById("tags").value;
+    const tags = document.getElementById("edit-tags").value;
     let tags_list;
     if (tags.includes(",")) {
         tags_list = tags.split(",");
@@ -31,30 +32,30 @@ async function createRecipe() {
     }
     
     // format ingredients
-    const entered_ingredients = document.getElementById("ingredients").value;
+    const entered_ingredients = document.getElementById("edit-ingredients").value;
     const ingredient_list = entered_ingredients.split("\n");
 
     // format directions
-    const entered_directions = document.getElementById("directions").value;
+    const entered_directions = document.getElementById("edit-directions").value;
     const directions_list = entered_directions.split("\n");
 
     // format image filename
-    const fakepath = document.getElementById("image").value;
+    const fakepath = document.getElementById("edit-image").value;
     let filename = "placeholder.jpg";
     if (fakepath) {
         filename = fakepath.substring(12, fakepath.length); // grab only the filename from "C:\fakepath\${filename}"
     }
     
     const data = {
-        name:           document.getElementById("name").value.toLowerCase(),
+        name:           document.getElementById("edit-name").value.toLowerCase(),
         img:            filename,
-        course:         document.getElementById("course").value, // grabs selected val from dropdown
-        cuisine:        document.getElementById("cuisine").value,
-        category:       document.getElementById("category").value, 
-        recipeYield:    document.getElementById("recipe-yield").value,
-        rating:         Number(document.getElementById("rating").value),
-        prepTime:       Number(document.getElementById("prep-time").value),
-        cookTime:       Number(document.getElementById("cook-time").value),
+        course:         document.getElementById("edit-course").value, // grabs selected val from dropdown
+        cuisine:        document.getElementById("edit-cuisine").value,
+        category:       document.getElementById("edit-category").value, 
+        recipeYield:    document.getElementById("edit-recipe-yield").value,
+        rating:         Number(document.getElementById("edit-rating").value),
+        prepTime:       Number(document.getElementById("edit-prep-time").value),
+        cookTime:       Number(document.getElementById("edit-cook-time").value),
         season:         checked_seasons,
         tags:           tags_list,
         ingredients:    ingredient_list,
@@ -62,23 +63,20 @@ async function createRecipe() {
     };
     
     const config = {
-        method: "post", 
+        method: "put", // is this right? still need to add route
         mode: "cors", 
         cache: "no-cache", 
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
     };
 
-    console.log("in create_recipe\n");
     const fetchResponse = await fetch(url, config);
-    console.log("fetch response \n" + fetchResponse);
     const jsonResponse = await fetchResponse.json();
-    console.log("json response \n" + jsonResponse);
 
 
     if (jsonResponse.error) {
-        general_error_msg.style.display = "block";
-        general_error_msg.innerHTML = jsonResponse.error;
+        edit_general_error_msg.style.display = "block";
+        edit_general_error_msg.innerHTML = jsonResponse.error;
     } else {
         document.getElementById("create-recipe-container").style.display = "none";
         displaySingleRecipe(jsonResponse.name);
@@ -87,4 +85,4 @@ async function createRecipe() {
     
 }
 
-export { createRecipe };
+export { displayEditRecipe };

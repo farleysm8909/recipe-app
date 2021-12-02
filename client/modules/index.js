@@ -1,5 +1,7 @@
 import { displayHomepage } from "./retrieve/homepage.js";
 import { createRecipe } from "./create/create_recipe.js";
+import { displaySingleRecipe } from "./retrieve/single_recipe.js";
+import { displayEditRecipe } from "./update/edit_recipe.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     displayHomepage();
@@ -17,10 +19,14 @@ window.addEventListener('DOMContentLoaded', () => {
     //     console.log(filename);
     // });
 
-    document.getElementById("form").addEventListener("submit", function(e) {
-        e.preventDefault();
-        createRecipe();
-    });
+
+    const forms = document.getElementsByClassName("form");
+    for (let i = 0; i < forms.length; i++) {
+        forms[i].addEventListener("submit", function(e) {
+            e.preventDefault();
+            createRecipe();
+        });
+    }
 
     // add event listeners for statically displayed buttons
 
@@ -77,10 +83,30 @@ window.addEventListener('DOMContentLoaded', () => {
     const edit_btn = document.querySelector("#edit-btn");
     if ( edit_btn ) {
         edit_btn.addEventListener("click", () => {
+            const recipe_name = document.getElementById("recipe-heading").textContent;
             document.getElementById("single-recipe-container").style.display = "none";
             document.getElementById("back-btn").style.display = "none";
             document.getElementById("edit-btn").style.display = "none";
+            document.getElementById("save-edit-btn").style.display = "inline";
+            document.getElementById("delete-recipe-btn").style.display = "inline";
+            document.getElementById("cancel-edit-btn").style.display = "inline";
             document.getElementById("edit-recipe-container").style.display = "block";
+            displayEditRecipe(recipe_name);
+        });
+    } else {
+        console.error(`Unable to bind to target! Debug Required.`);
+    }
+
+    // cancel edit recipe btn (from edit page)
+    const cancel_edit_btn = document.querySelector("#cancel-edit-btn");
+    if ( cancel_edit_btn ) {
+        cancel_edit_btn.addEventListener("click", () => {
+            const recipe_name = document.getElementById("recipe-heading").textContent;
+            document.getElementById("edit-recipe-container").style.display = "none";
+            document.getElementById("save-edit-btn").style.display = "none";
+            document.getElementById("delete-recipe-btn").style.display = "none";
+            displaySingleRecipe(recipe_name);
+            document.getElementById("single-recipe-container").style.display = "block";
         });
     } else {
         console.error(`Unable to bind to target! Debug Required.`);
