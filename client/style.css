@@ -1,4 +1,4 @@
-#create-recipe-container, #single-recipe-container, #edit-recipe-container, #back-btn, #edit-btn {
+#create-recipe-container, #single-recipe-container, #edit-recipe-container {
     display: none;
 }
 
@@ -112,7 +112,7 @@ footer {
     opacity: 0.5;
 }
 
-#general-error-msg {
+#general-error-msg, #edit-general-error-msg {
     color: #cc0000;
 }
 

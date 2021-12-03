@@ -2,6 +2,9 @@ import { displaySingleRecipe } from "./single_recipe.js";
 
 async function displayHomepage() {
 
+    document.getElementById("create-recipe-container").style.display = "none";
+    document.getElementById("single-recipe-container").style.display = "none";
+    document.getElementById("homepage-container").style.display = "block";
     const url = "http://127.0.0.1:3000/recipe";
 
     const fetchResponse = await fetch(url);
@@ -46,8 +49,6 @@ async function displayHomepage() {
         for (let i = 0; i < recipe_divs.length; i++) {
             recipe_divs[i].addEventListener("click", () => {
                 displaySingleRecipe(recipe_names[i].textContent);
-                document.getElementById("homepage-container").style.display = "none";
-                document.getElementById("single-recipe-container").style.display = "block";
             });
         }
     }

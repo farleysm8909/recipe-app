@@ -1,6 +1,7 @@
 import { displaySingleRecipe } from "../retrieve/single_recipe.js";
 
 async function createRecipe() {
+
     let general_error_msg = document.getElementById("general-error-msg");
     general_error_msg.innerHTML = ""; // clear former error msgs
 
@@ -69,12 +70,8 @@ async function createRecipe() {
         body: JSON.stringify(data)
     };
 
-    console.log("in create_recipe\n");
     const fetchResponse = await fetch(url, config);
-    console.log("fetch response \n" + fetchResponse);
     const jsonResponse = await fetchResponse.json();
-    console.log("json response \n" + jsonResponse);
-
 
     if (jsonResponse.error) {
         general_error_msg.style.display = "block";

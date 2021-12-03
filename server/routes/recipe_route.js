@@ -67,12 +67,8 @@ router.post("/", async (req, res) => {
     //recipe.img.contentType = 'image/jpg';
 
     try {
-        console.log("in recipe_route")
         const savedRecipe = await recipe.save();
-        console.log("saved recipe " + savedRecipe);
-        res.status(200).redirect(`recipe/${savedRecipe.name}`);
-        //res.status(200).send(savedRecipe);
-        //res.status(200).json(JSON.stringify(savedRecipe)); 
+        res.status(200).send(savedRecipe);
     } catch(err) {
         if (isProduction()) {
             console.error(err);
@@ -109,6 +105,73 @@ router.get("/:name", async (req, res) => {
 /* ************************* UPDATE ************************* */
 
 
+// update existing recipe
+router.put("/:name", async (req, res) => { 
+
+    //validate request
+    if (!req.body.name || !req.body.recipeYield || !req.body.tags || !req.body.ingredients || !req.body.directions) {
+        return res.status(400).send({error: "Name, recipe yield, tags, ingredients and directions fields cannot be empty"});
+    }
+
+    if (!req.body.prepTime || !req.body.cookTime) {
+        return res.status(400).send({error: "Prep and Cook Time fields cannot be empty"});
+    }
+
+    if (!req.body.course || !req.body.cuisine || !req.body.category || !req.body.rating) {
+        return res.status(400).send({error: "Course, cuisine, category and rating dropdowns cannot be empty"});
+    }
+
+    if (!req.body.season) {
+        return res.status(400).send({error: "One or more seasons must be checked"});
+    }
+
+    // if name is being updated, check if there is a naming conflict (names must be unique)
+    if (req.body.name != req.params.name) {
+        const recipes = await Recipe.find();
+        for (let i = 0; i < recipes.length; i++) {
+            if (recipes[i].name == req.body.name) {
+                return res.status(400).send({error: "Recipe name already exists!"});
+            }
+        }
+    }
+
+    // locate recipe to edit
+    try {
+        let recipe = await Recipe.findOne({name: req.params.name});
+        
+        recipe.name =           req.body.name,
+        //recipe.img =          req.body.img
+        recipe.course =         req.body.course,
+        recipe.cuisine =        req.body.cuisine,
+        recipe.category =       req.body.category,
+        recipe.prepTime =       req.body.prepTime,
+        recipe.cookTime =       req.body.cookTime,
+        recipe.totalTime =      req.body.prepTime + req.body.cookTime;
+        recipe.recipeYield =    req.body.recipeYield,
+        recipe.rating =         req.body.rating,
+        recipe.season =         req.body.season,
+        recipe.tags =           req.body.tags,
+        recipe.ingredients =    req.body.ingredients,
+        recipe.directions =     req.body.directions
+
+        const filename = req.body.img;
+        const img_path = `../../client/images/${filename}`;
+
+        recipe.img.filename = filename;
+        //recipe.img.data = readFileSync(img_path); // error here because the image isn't uploading to the folder ie path does not exist. How to upload to folder??
+        //recipe.img.contentType = 'image/jpg';
+
+        const savedRecipe = await recipe.save();
+        res.status(200).send(savedRecipe);
+
+
+    } catch(err) {
+        if (isProduction()) {
+            console.error(err);
+        }
+        res.status(500).json({error: "Recipe not saved."}); 
+    }
+});
 
 /* ************************* DELETE ************************* */
 

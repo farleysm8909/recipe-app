@@ -6,6 +6,11 @@ async function displaySingleRecipe(recipe_name) {
     const fetchResponse = await fetch(url);
     const jsonResponse = await fetchResponse.json(); 
 
+    document.getElementById("create-recipe-container").style.display = "none";
+    document.getElementById("homepage-container").style.display = "none";
+    document.getElementById("edit-recipe-container").style.display = "none";
+    document.getElementById("single-recipe-container").style.display = "block";
+
     // format rating
     let stars = "";
     let rating = Number(jsonResponse.rating);
@@ -65,8 +70,8 @@ async function displaySingleRecipe(recipe_name) {
     });
     directions += `</ol>`;
 
-    document.getElementById("back-btn").style.display = "block";
-    document.getElementById("edit-btn").style.display = "block";
+    document.getElementById("back-btn").style.display = "inline-block";
+    document.getElementById("edit-btn").style.display = "inline-block";
 
     document.getElementById("recipe-heading").innerHTML = `${name}`;
     document.getElementById("recipe-img").innerHTML = `${img}`;

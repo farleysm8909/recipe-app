@@ -56,17 +56,17 @@
 
         <div id="edit-recipe-container">
             <h1>Edit Recipe</h1>
-            <form id="edit-form" class="form row g-3 needs-validation" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
+            <form id="edit-form" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
                 <!-- Name -->
                 <div class="col-md-6">
                     <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="edit-name" name="name" placeholder="Recipe Name" required>
+                    <input type="text" class="form-control" id="edit-name" name="name" required>
                 </div>
 
                 <!-- Recipe Yield -->
                 <div class="col-md-3">
                     <label for="recipe-yield" class="form-label">Recipe Yield</label>
-                    <input type="text" class="form-control" name="recipe-yield" id="edit-recipe-yield" placeholder="e.g., 4-6 servings" required>
+                    <input type="text" class="form-control" name="recipe-yield" id="edit-recipe-yield" required>
                 </div>
 
                 <!-- Image -->
@@ -78,19 +78,19 @@
                 <!-- Tags -->
                 <div class="col-md-6">
                     <label for="tags" class="form-label">Tag Words</label>
-                    <input type="text" class="form-control" name="tags" id="edit-tags" placeholder="e.g., chicken, crispy, spicy..." required>
+                    <input type="text" class="form-control" name="tags" id="edit-tags" required>
                 </div>
 
                 <!-- Prep Time -->
                 <div class="col-md-3">
                     <label for="prep-time" class="form-label">Prep Time (minutes)</label>
-                    <input type="number" class="form-control" name="prep-time" id="edit-prep-time" placeholder="e.g., 30" required>
+                    <input type="number" class="form-control" name="prep-time" id="edit-prep-time" required>
                 </div>
 
                 <!-- Cook Time -->
                 <div class="col-md-3">
                     <label for="cook-time" class="form-label">Cook Time (minutes)</label>
-                    <input type="number" class="form-control" name="cook-time" id="edit-cook-time" placeholder="e.g., 120" required>
+                    <input type="number" class="form-control" name="cook-time" id="edit-cook-time" required>
                 </div>
 
                 <!-- Category -->
@@ -179,13 +179,13 @@
                 <!-- Ingredients -->
                 <div class="col-md-12 mb-3">
                     <label for="ingredients" class="form-label">Ingredients (one per line)</label>
-                    <textarea class="form-control" name="ingredients" id="edit-ingredients" rows="3" placeholder="e.g., 2 cups flour" required></textarea>
+                    <textarea class="form-control" name="ingredients" id="edit-ingredients" rows="3" required></textarea>
                 </div>
 
                 <!-- Directions -->
                 <div class="col-md-12 mb-3">
                     <label for="directions" class="form-label">Directions (one per line)</label>
-                    <textarea class="form-control" name="directions" id="edit-directions" rows="3" placeholder="e.g., Preheat the oven to 350 degrees..." required></textarea>
+                    <textarea class="form-control" name="directions" id="edit-directions" rows="3" required></textarea>
                 </div>
 
                 <div id="edit-general-error-msg" class="col-md-12"></div>
@@ -202,7 +202,7 @@
         <div id="create-recipe-container">
             <h1>Create a New Recipe</h1>
             <!--<div id="create-recipe-response"></div>-->
-            <form id="form" class="form row g-3 needs-validation" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
+            <form id="form" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
                 <!-- Name -->
                 <div class="col-md-6">
                     <label for="name" class="form-label">Name</label>

@@ -1,11 +1,24 @@
+import { displaySingleRecipe } from "../retrieve/single_recipe.js";
 
-async function displayEditRecipe(recipe_name) {
+async function displayEditRecipe(rname) {
+    document.getElementById("single-recipe-container").style.display = "none";
+    document.getElementById("edit-recipe-container").style.display = "block";
+
+    const lowercase_name = rname.toLowerCase();
+    const url = `http://127.0.0.1:3000/recipe/${lowercase_name}`;
+    const fetchResponse = await fetch(url);
+    const jsonResponse = await fetchResponse.json(); 
+
+
+
+    
+}
+
+async function editRecipe(original_rname) {
+    const url = `http://127.0.0.1:3000/recipe/${original_rname.toLowerCase()}`;
+
     let edit_general_error_msg = document.getElementById("edit-general-error-msg");
     edit_general_error_msg.innerHTML = ""; // clear former error msgs
-
-    const url = "http://127.0.0.1:3000/recipe";
-
-    // how to make default text from db appear in boxes?
 
     // format seasons
     const checkboxes = document.getElementsByClassName("box");
@@ -72,17 +85,14 @@ async function displayEditRecipe(recipe_name) {
 
     const fetchResponse = await fetch(url, config);
     const jsonResponse = await fetchResponse.json();
-
+    console.log("jsonResponse.name: " + jsonResponse.name);
 
     if (jsonResponse.error) {
         edit_general_error_msg.style.display = "block";
         edit_general_error_msg.innerHTML = jsonResponse.error;
     } else {
-        document.getElementById("create-recipe-container").style.display = "none";
         displaySingleRecipe(jsonResponse.name);
-        document.getElementById("single-recipe-container").style.display = "block";
     }
-    
 }
 
-export { displayEditRecipe };
+export { displayEditRecipe, editRecipe };

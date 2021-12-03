@@ -1,9 +1,10 @@
 import { displayHomepage } from "./retrieve/homepage.js";
 import { createRecipe } from "./create/create_recipe.js";
 import { displaySingleRecipe } from "./retrieve/single_recipe.js";
-import { displayEditRecipe } from "./update/edit_recipe.js";
+import { displayEditRecipe, editRecipe } from "./update/edit_recipe.js";
 
 window.addEventListener('DOMContentLoaded', () => {
+    
     displayHomepage();
 
     document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
@@ -19,25 +20,42 @@ window.addEventListener('DOMContentLoaded', () => {
     //     console.log(filename);
     // });
 
+    // listen for when forms are submitted (create/update recipe)
+    // const forms = document.getElementsByClassName("form");
+    // for (let i = 0; i < forms.length; i++) {
+    //     forms[i].addEventListener("submit", function(e) {
+    //         e.preventDefault();
+    //         createRecipe();
+    //     });
+    // }
 
-    const forms = document.getElementsByClassName("form");
-    for (let i = 0; i < forms.length; i++) {
-        forms[i].addEventListener("submit", function(e) {
+    // create recipe form submission
+    const create_form = document.getElementById("form");
+    if (create_form) {
+        create_form.addEventListener("submit", (e) => {
             e.preventDefault();
             createRecipe();
         });
     }
 
+    // edit recipe form submission
+    const edit_form = document.getElementById("edit-form");
+    if (edit_form) {
+        edit_form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const recipe_name = document.getElementById("recipe-heading").textContent;
+            editRecipe(recipe_name);
+        });
+    }
+
     // add event listeners for statically displayed buttons
 
-   // create recipe btn
-   const create_recipe_container = document.getElementById("create-recipe-container");
-   const homepage_container = document.getElementById("homepage-container");
+   // create recipe btn (display UI)
    const create_btn = document.getElementById("create-btn");
    if ( create_btn ) {
        create_btn.addEventListener("click", () => {
-           homepage_container.style.display = "none";
-           create_recipe_container.style.display = "block";
+        document.getElementById("homepage-container").style.display = "none";
+        document.getElementById("create-recipe-container").style.display = "block";
        });
    } else {
        console.error(`Unable to bind to target! Debug Required.`);
@@ -53,13 +71,11 @@ window.addEventListener('DOMContentLoaded', () => {
     //     console.error(`Unable to bind to target! Debug Required.`);
     // }
 
-    // cancel save btn
+    // cancel save btn (from create page)
     const cancel_btn = document.querySelector("#cancel-create-btn");
     if ( cancel_btn ) {
         cancel_btn.addEventListener("click", () => {
-            document.getElementById("create-recipe-container").style.display = "none";
             displayHomepage();
-            document.getElementById("homepage-container").style.display = "block";
         });
     } else {
         console.error(`Unable to bind to target! Debug Required.`);
@@ -69,44 +85,37 @@ window.addEventListener('DOMContentLoaded', () => {
     const back_btn = document.querySelector("#back-btn");
     if ( back_btn ) {
         back_btn.addEventListener("click", () => {
-            document.getElementById("single-recipe-container").style.display = "none";
             displayHomepage();
-            document.getElementById("back-btn").style.display = "none";
-            document.getElementById("edit-btn").style.display = "none";
-            document.getElementById("homepage-container").style.display = "block";
         });
     } else {
         console.error(`Unable to bind to target! Debug Required.`);
     } 
 
-    // edit recipe btn (from single page)
+    // edit recipe btn (from single page - updates UI)
     const edit_btn = document.querySelector("#edit-btn");
     if ( edit_btn ) {
         edit_btn.addEventListener("click", () => {
             const recipe_name = document.getElementById("recipe-heading").textContent;
-            document.getElementById("single-recipe-container").style.display = "none";
-            document.getElementById("back-btn").style.display = "none";
-            document.getElementById("edit-btn").style.display = "none";
-            document.getElementById("save-edit-btn").style.display = "inline";
-            document.getElementById("delete-recipe-btn").style.display = "inline";
-            document.getElementById("cancel-edit-btn").style.display = "inline";
-            document.getElementById("edit-recipe-container").style.display = "block";
             displayEditRecipe(recipe_name);
         });
     } else {
         console.error(`Unable to bind to target! Debug Required.`);
     }
 
+    // save edit recipe btn (from edit page)
+    // const save_edit_btn = document.getElementById("save-edit-btn");
+    // if (save_edit_btn) {
+    //     save_edit_btn.addEventListener("click", () => {
+    //         editRecipe();
+    //     });
+    // }
+
     // cancel edit recipe btn (from edit page)
     const cancel_edit_btn = document.querySelector("#cancel-edit-btn");
     if ( cancel_edit_btn ) {
         cancel_edit_btn.addEventListener("click", () => {
             const recipe_name = document.getElementById("recipe-heading").textContent;
-            document.getElementById("edit-recipe-container").style.display = "none";
-            document.getElementById("save-edit-btn").style.display = "none";
-            document.getElementById("delete-recipe-btn").style.display = "none";
             displaySingleRecipe(recipe_name);
-            document.getElementById("single-recipe-container").style.display = "block";
         });
     } else {
         console.error(`Unable to bind to target! Debug Required.`);
