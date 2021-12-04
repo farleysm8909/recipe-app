@@ -8,7 +8,7 @@ async function createRecipe() {
     const url = "http://127.0.0.1:3000/recipe";
 
     // format seasons
-    const checkboxes = document.getElementsByClassName("form-check-input");
+    const checkboxes = document.getElementsByClassName("checkb");
     let checked_seasons = [];
     for (let i = 0; i < checkboxes.length; i++) {
         if (checkboxes[i].checked) {

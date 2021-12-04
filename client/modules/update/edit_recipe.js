@@ -1,16 +1,69 @@
 import { displaySingleRecipe } from "../retrieve/single_recipe.js";
 
 async function displayEditRecipe(rname) {
-    document.getElementById("single-recipe-container").style.display = "none";
-    document.getElementById("edit-recipe-container").style.display = "block";
-
     const lowercase_name = rname.toLowerCase();
     const url = `http://127.0.0.1:3000/recipe/${lowercase_name}`;
     const fetchResponse = await fetch(url);
     const jsonResponse = await fetchResponse.json(); 
 
+    document.getElementById("single-recipe-container").style.display = "none";
+    document.getElementById("edit-recipe-container").style.display = "block";
 
+    // form elements
+    const name = document.getElementById("edit-name");
+    const course = document.getElementById("edit-course");
+    const cuisine = document.getElementById("edit-cuisine");
+    const category = document.getElementById("edit-category");
+    const rating = document.getElementById("edit-rating");
+    const prep_time = document.getElementById("edit-prep-time");
+    const cook_time = document.getElementById("edit-cook-time");
+    const recipe_yield = document.getElementById("edit-recipe-yield");
+    const tags = document.getElementById("edit-tags");
+    const directions = document.getElementById("edit-directions");
+    const ingredients = document.getElementById("edit-ingredients");
+    // seasons
+    const spring = document.getElementById("edit-inlineCheckbox1");
+    const summer = document.getElementById("edit-inlineCheckbox2");
+    const fall = document.getElementById("edit-inlineCheckbox3");
+    const winter = document.getElementById("edit-inlineCheckbox4");
 
+    // populate form fields with existing data (to be edited by user)
+    name.value = rname;
+    course.value = jsonResponse.course;
+    cuisine.value = jsonResponse.cuisine;
+    category.value = jsonResponse.category;
+    rating.value = jsonResponse.rating;
+    prep_time.value = jsonResponse.prepTime;
+    cook_time.value = jsonResponse.cookTime;
+    recipe_yield.value = jsonResponse.recipeYield;
+    tags.value = jsonResponse.tags;
+
+    // format seasons, ingredients, directions and populate with info
+    spring.checked = false;
+    summer.checked = false;
+    fall.checked = false;
+    winter.checked = false;
+    const seasons_arr = jsonResponse.season;
+    for (let h = 0; h < seasons_arr.length; h++) {
+        if (seasons_arr[h] === "Spring") { spring.checked = true; }
+        if (seasons_arr[h] === "Summer") { summer.checked = true; } 
+        if (seasons_arr[h] === "Fall")   { fall.checked = true; }  
+        if (seasons_arr[h] === "Winter") { winter.checked = true; } 
+    }
+
+    ingredients.value = "";
+    const ingredients_arr = jsonResponse.ingredients;
+    for (let i = 0; i < ingredients_arr.length-1; i++) {
+        ingredients.value += ingredients_arr[i] + "\n";
+    }
+    ingredients.value += ingredients_arr[ingredients_arr.length-1]; // avoid newline at end of last ingredient
+
+    directions.value = "";
+    const directions_arr = jsonResponse.directions;
+    for (let j = 0; j < directions_arr.length-1; j++) {
+        directions.value += directions_arr[j] + "\n";
+    }
+    directions.value += directions_arr[directions_arr.length-1]; // avoid newline at end of last direction
     
 }
 
@@ -85,7 +138,6 @@ async function editRecipe(original_rname) {
 
     const fetchResponse = await fetch(url, config);
     const jsonResponse = await fetchResponse.json();
-    console.log("jsonResponse.name: " + jsonResponse.name);
 
     if (jsonResponse.error) {
         edit_general_error_msg.style.display = "block";
