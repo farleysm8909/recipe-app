@@ -4,6 +4,7 @@ async function displayHomepage() {
 
     document.getElementById("create-recipe-container").style.display = "none";
     document.getElementById("single-recipe-container").style.display = "none";
+    document.getElementById("edit-recipe-container").style.display = "none";
     document.getElementById("homepage-container").style.display = "block";
     const url = "http://127.0.0.1:3000/recipe";
 

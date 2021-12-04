@@ -2,6 +2,7 @@ import { displayHomepage } from "./retrieve/homepage.js";
 import { createRecipe } from "./create/create_recipe.js";
 import { displaySingleRecipe } from "./retrieve/single_recipe.js";
 import { displayEditRecipe, editRecipe } from "./update/edit_recipe.js";
+import { deleteRecipe } from "./delete/delete_recipe.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     
@@ -121,5 +122,15 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error(`Unable to bind to target! Debug Required.`);
     }
     
+    // delete recipe btn (from edit page)
+    const delete_btn = document.querySelector("#delete-recipe-btn");
+    if ( delete_btn ) {
+        delete_btn.addEventListener("click", () => {
+            const recipe_name = document.getElementById("recipe-heading").textContent;
+            deleteRecipe(recipe_name);
+        });
+    } else {
+        console.error(`Unable to bind to target! Debug Required.`);
+    }
  
 });

@@ -73,7 +73,7 @@ router.post("/", async (req, res) => {
         if (isProduction()) {
             console.error(err);
         }
-        res.status(500).json({error: "Recipe not saved."}); 
+        res.status(500).send({error: "Recipe not saved."}); 
     }
 });
 
@@ -169,13 +169,21 @@ router.put("/:name", async (req, res) => {
         if (isProduction()) {
             console.error(err);
         }
-        res.status(500).json({error: "Recipe not saved."}); 
+        res.status(500).send({error: "Recipe not saved."}); 
     }
 });
 
 /* ************************* DELETE ************************* */
 
-
+// delete recipe by name (unique)
+router.delete("/:name", async (req, res) => { 
+    try {
+        const deletedRecipe = await Recipe.deleteOne({name: req.params.name}); // https://rahmanfadhil.com/express-rest-api/
+        res.status(204).send({message: "Recipe deleted!"});
+    } catch(err) {
+        res.status(404).send({error: "Recipe doesn't exist!"});
+    }
+});
 
 
 
