@@ -1,7 +1,6 @@
 import express from "express";
 import { isProduction } from "../utils/common.js";
 import { Recipe } from "../model/Recipe.js";
-import { readFileSync } from 'fs';
 
 
 const router = express.Router();
