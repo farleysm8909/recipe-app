@@ -94,7 +94,7 @@ async function displayFilteredRecipes(search_string) {
     filtered_recipes.forEach(recipe => {
         let name = recipe.name;
         let cased_name = "";
-        for (let i = 0; i<name.length; i++) {
+        for (let i = 0; i < name.length; i++) {
             if (i==0) {
                 cased_name += name[i].toUpperCase();
             } else if (name[i] == " " || name[i] == "-") {
