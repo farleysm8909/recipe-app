@@ -81,7 +81,6 @@ async function displayFilteredRecipes(search_string) {
             recipe.course.toLowerCase().includes(search_string) ||
             recipe.category.toLowerCase().includes(search_string) ||
             recipe.cuisine.toLowerCase().includes(search_string) ||
-            recipe.totalTime.toString().includes(search_string) ||
             recipe.recipeYield.toLowerCase().includes(search_string) ||
             recipe.rating.toString().toLowerCase().includes(search_string) ||
             recipe.tags.toString().toLowerCase().includes(search_string) ||

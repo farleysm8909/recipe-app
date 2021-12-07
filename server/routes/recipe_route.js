@@ -83,6 +83,7 @@ router.post("/", async (req, res) => {
 // get all recipes
 router.get("/", async (req, res) => {
     try {
+        // sort highest to lowest rating
         const recipes = await Recipe.find().sort({ rating: 'desc' });
         res.status(200).send(recipes);
     } catch(err) {

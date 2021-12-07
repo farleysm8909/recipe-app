@@ -1,6 +1,6 @@
 async function displaySingleRecipe(recipe_name) {
-    const lowercase_name = recipe_name.toLowerCase();
 
+    const lowercase_name = recipe_name.toLowerCase();
     const url = `http://127.0.0.1:3000/recipe/${lowercase_name}`;
 
     const fetchResponse = await fetch(url);
@@ -21,7 +21,20 @@ async function displaySingleRecipe(recipe_name) {
     // format date
     let str_date = new Date(jsonResponse.datePublished);
 
-    const name = `<h1>${recipe_name}</h1>`;
+    // format name
+    let name = recipe_name;
+    let cased_name = "";
+    for (let i = 0; i<name.length; i++) {
+        if (i==0) {
+            cased_name += name[i].toUpperCase();
+        } else if (name[i] == " " || name[i] == "-") {
+            cased_name += name[i];
+            cased_name += name[i+1].toUpperCase();
+        } else if (name[i-1] != " " && name[i-1] != "-") {
+            cased_name += name[i];
+        }
+    }
+    cased_name = `<h1>${cased_name}</h1>`;
     // image comes next - how to store in db? https://www.youtube.com/watch?v=3TfpgLfJYoo
     const img = `<img src="images/placeholder.jpg" alt="chicken parmesan">`; //`<img src="images/{jsonResponse.img.filename} alt="chicken parmesan">`;
 
@@ -57,13 +70,6 @@ async function displaySingleRecipe(recipe_name) {
     });
     ingredients += `</ul>`;
 
-    // let directions_array = directions_string.split("."); // divides string up by sentences and stores in array
-    // let directions = `<span>Directions</span><ol>`;
-    // directions_array.forEach(direction => {
-    //     directions += `<li>${direction}</li>`;
-    // });
-    // directions += `</ol>`;
-
     let directions = `<span>Directions</span><ol>`;
     directions_array.forEach(dir => {
         directions += `<li>${dir}</li>`;
@@ -72,9 +78,8 @@ async function displaySingleRecipe(recipe_name) {
 
     document.getElementById("back-btn").style.display = "inline-block";
     document.getElementById("edit-btn").style.display = "inline-block";
-
-    document.getElementById("recipe-heading").innerHTML = `${name}`;
-    document.getElementById("recipe-img").innerHTML = `${img}`;
+    document.getElementById("recipe-heading").innerHTML = cased_name;
+    document.getElementById("recipe-img").innerHTML = img;
     document.getElementById("prep").innerHTML = prep_time;
     document.getElementById("cook").innerHTML = cook_time;
     document.getElementById("tota").innerHTML = total_time;

@@ -130,7 +130,7 @@ async function editRecipe(original_rname) {
     };
     
     const config = {
-        method: "put", // is this right? still need to add route
+        method: "put",
         mode: "cors", 
         cache: "no-cache", 
         headers: {"Content-Type": "application/json"},
