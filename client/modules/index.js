@@ -126,8 +126,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const delete_btn = document.querySelector("#delete-recipe-btn");
     if ( delete_btn ) {
         delete_btn.addEventListener("click", () => {
-            const recipe_name = document.getElementById("recipe-heading").textContent;
-            deleteRecipe(recipe_name);
+            const response = confirm("Are you sure you want to delete this recipe?");
+            if (response) {
+                const recipe_name = document.getElementById("recipe-heading").textContent;
+                deleteRecipe(recipe_name);
+            }
         });
     } else {
         console.error(`Unable to bind to target! Debug Required.`);

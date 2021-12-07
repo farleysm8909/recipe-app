@@ -2,14 +2,6 @@
     display: none;
 }
 
-.invalid-feedback {
-    display: none;
-}
-
-.invalid-feedback {
-    color: #cc0000;
-}
-
 #inline-checkboxes {
     display: flex;
     flex-direction: row;
@@ -23,11 +15,12 @@
     justify-content: space-between; /* or left to ignore awk space when 2 or 5 recipes */
 }
 
+
 .recipe-card {
     margin: 15px 0;
     display: flex;
     flex-direction: column;
-    align-items: center; /* default justification also appealing */
+    align-items: center;
 }
 
 #single-recipe-container {
@@ -43,7 +36,6 @@
 h1 {
     margin-bottom: 30px;
 }
-
 
 body {
     position: relative;
@@ -88,7 +80,7 @@ footer {
     display: inline-block;
 }
 
-/* homepage */
+/* inside homepage.js */
 .recipe-img-container {
     position: relative;
     width: 100%;
@@ -116,18 +108,17 @@ footer {
     color: #cc0000;
 }
 
-
-
 /* descendant selectors */
 .recipe-card img {
-    max-width: 350px;
+    /* width: 350px; */
     height: auto; 
 }
 
 .recipe-card h3 {
-    max-width: 350px;
+    /* width: 350px; */
     font-size: 20pt;
     margin-top: 10px;
+    text-align: center;
 }
 
 #single-recipe-container span {
@@ -156,18 +147,33 @@ form > * {
     margin: 20px 0;
 }
 
-/* Adjacent selectors */
 
-.recipe-img-container + img {
-    display: block;
-    width: 100%;
-    height: auto;
+@media only screen and (max-width: 754px) {
+    .recipe-card, .recipe-card img, .recipe-card h3 {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 991px) and (min-width: 755px) {
+    .recipe-card img, .recipe-card h3 {
+        width: 350px;
+    }
+}
+
+@media only screen and (max-width: 1199px) and (min-width: 992px) {
+    .recipe-card img, .recipe-card h3 {
+        width: 450px;
+    }
+}
+
+/* grabs last child if it is the second, fifth, eighth, etc. total and removes awkward space before it */
+@media only screen and (min-width: 1200px) {
+    .recipe-card:nth-child(3n+2):last-child {
+        margin-right: auto;
+        margin-left: 45px;
+    }
 }
 
 
-
-
-
-  
 
 
