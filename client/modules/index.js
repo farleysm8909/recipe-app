@@ -3,32 +3,22 @@ import { createRecipe } from "./create/create_recipe.js";
 import { displaySingleRecipe } from "./retrieve/single_recipe.js";
 import { displayEditRecipe, editRecipe } from "./update/edit_recipe.js";
 import { deleteRecipe } from "./delete/delete_recipe.js";
+import { Message } from "./classes/message.js";
 
 window.addEventListener('DOMContentLoaded', () => {
     
     displayHomepage();
 
+    // add year to footer
     document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
 
-    // doesn't work
     // let filename = "placeholder.jpg";
-    // watch for change to image upload input element, need to grab value for path
-    // https://stackoverflow.com/questions/1804745/get-the-filename-of-a-fileupload-in-a-document-through-javascript/19807149
+    // // watch for change to image upload input element, need to grab value for path
+    // //https://stackoverflow.com/questions/1804745/get-the-filename-of-a-fileupload-in-a-document-through-javascript/19807149
     // document.getElementById("image").addEventListener("onchange", () => {
-    //     console.log("inside index.js onchange event listener");
     //     const file = document.getElementById("image").files[0];
     //     filename = file.name;
-    //     console.log(filename);
     // });
-
-    // listen for when forms are submitted (create/update recipe)
-    // const forms = document.getElementsByClassName("form");
-    // for (let i = 0; i < forms.length; i++) {
-    //     forms[i].addEventListener("submit", function(e) {
-    //         e.preventDefault();
-    //         createRecipe();
-    //     });
-    // }
 
     // create recipe form submission
     const create_form = document.getElementById("form");
@@ -49,7 +39,9 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // add event listeners for statically displayed buttons
+
+    /* add event listeners for statically displayed buttons */
+
 
    // create recipe btn (display UI)
    const create_btn = document.getElementById("create-btn");
@@ -62,17 +54,7 @@ window.addEventListener('DOMContentLoaded', () => {
        console.error(`Unable to bind to target! Debug Required.`);
    } 
 
-    // save recipe btn
-    // const save_btn = document.querySelector("#save-recipe-btn");
-    // if ( save_btn ) {
-    //     save_btn.addEventListener("click", () => {
-    //         createRecipe();
-    //     });
-    // } else {
-    //     console.error(`Unable to bind to target! Debug Required.`);
-    // }
-
-    // cancel save btn (from create page)
+    // cancel create btn (from create page)
     const cancel_btn = document.querySelector("#cancel-create-btn");
     if ( cancel_btn ) {
         cancel_btn.addEventListener("click", () => {
@@ -103,14 +85,6 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error(`Unable to bind to target! Debug Required.`);
     }
 
-    // save edit recipe btn (from edit page)
-    // const save_edit_btn = document.getElementById("save-edit-btn");
-    // if (save_edit_btn) {
-    //     save_edit_btn.addEventListener("click", () => {
-    //         editRecipe();
-    //     });
-    // }
-
     // cancel edit recipe btn (from edit page)
     const cancel_edit_btn = document.querySelector("#cancel-edit-btn");
     if ( cancel_edit_btn ) {
@@ -126,7 +100,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const delete_btn = document.querySelector("#delete-recipe-btn");
     if ( delete_btn ) {
         delete_btn.addEventListener("click", () => {
-            const response = confirm("Are you sure you want to delete this recipe?");
+            const msg = new Message("Are you sure you want to delete this recipe?", "confirm");
+            const response_string = msg.sendMessage(); 
+            const response = eval(response_string);
             if (response) {
                 const recipe_name = document.getElementById("recipe-heading").textContent;
                 deleteRecipe(recipe_name);
