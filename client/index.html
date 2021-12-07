@@ -13,7 +13,12 @@
     <div class="container">
         <div id="homepage-container">
             <h1>My Recipes</h1>
-            <button id="create-btn" type="button" class="btn btn-primary">Create Recipe</button>
+            <section>
+                <button id="create-btn" type="button" class="btn btn-primary">&plus;&#160;Create Recipe</button>
+                <div id="search-wrapper">
+                    <input type="text" name="search-bar" id="search-bar" placeholder="search for a recipe">
+                </div>
+            </section>
             <div id="recipes-container"></div>
           </div>
 
@@ -191,7 +196,7 @@
                 <div id="edit-general-error-msg" class="col-md-12"></div>
 
                 <div class="col-md-12">
-                    <button id="save-edit-btn" type="submit" class="btn btn-success">Save</button>
+                    <button id="save-edit-btn" type="submit" class="btn btn-success">Save Changes</button>
                     <button id="cancel-edit-btn" type="button" class="btn btn-secondary">Cancel</button>
                     <button id="delete-recipe-btn" type="button" class="btn btn-danger">Delete Recipe</button>
                 </div>
@@ -201,7 +206,6 @@
 
         <div id="create-recipe-container">
             <h1>Create a New Recipe</h1>
-            <!--<div id="create-recipe-response"></div>-->
             <form id="form" class="row g-3 needs-validation" method="POST" enctype="multipart/form-data"> <!--action="/recipe" method="POST" enctype="multipart/form-data"-->
                 <!-- Name -->
                 <div class="col-md-6">
@@ -347,7 +351,7 @@
         
     </div>
     <footer>
-        &copy; <span id="copyright_year"></span> SAMANTHA FARLEY
+        &copy; <span id="copyright_year"></span> Samantha Farley
     </footer>
 
 

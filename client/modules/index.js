@@ -1,4 +1,4 @@
-import { displayHomepage } from "./retrieve/homepage.js";
+import { displayHomepage, displayFilteredRecipes } from "./retrieve/homepage.js";
 import { createRecipe } from "./create/create_recipe.js";
 import { displaySingleRecipe } from "./retrieve/single_recipe.js";
 import { displayEditRecipe, editRecipe } from "./update/edit_recipe.js";
@@ -19,6 +19,12 @@ window.addEventListener('DOMContentLoaded', () => {
     //     const file = document.getElementById("image").files[0];
     //     filename = file.name;
     // });
+
+    const search_bar = document.getElementById("search-bar");
+    search_bar.addEventListener("keyup", (e) => {
+        const search_string = e.target.value.toLowerCase();
+        displayFilteredRecipes(search_string);
+    });
 
     // create recipe form submission
     const create_form = document.getElementById("form");
