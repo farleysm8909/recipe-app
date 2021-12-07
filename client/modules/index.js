@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', () => {
     displayHomepage();
 
     // add year to footer
-    document.getElementById("copyright_year").innerHTML = new Date().getFullYear();
+    document.getElementById("copyright-year").innerHTML = new Date().getFullYear();
     const search_bar = document.getElementById("search-bar");
     const edit_name = document.getElementById("edit-name");
     const edit_ryield = document.getElementById("edit-recipe-yield");

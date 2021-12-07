@@ -15,7 +15,6 @@
     justify-content: space-between;
 }
 
-
 .recipe-card {
     margin: 15px 0;
     display: flex;
@@ -157,7 +156,8 @@ form > * {
     margin: 20px 0;
 }
 
-#prep, #prep + div, #cook + div, #yiel, #yiel + div, #rati + div, #date, #date + div, #cate + div, #seas, #tags, #ingr, #dire {
+#prep, #prep + div, #cook + div, #yiel, #yiel + div, #rati + div, 
+#date, #date + div, #cate + div, #seas, #tags, #ingr, #dire {
     padding-bottom: 5px;
 }
 
@@ -193,6 +193,27 @@ form > * {
     height: 34px;
     border-radius: 3px;
     border: 1px solid #8a8a8a;
+}
+
+.form-control::placeholder, #search-bar::placeholder {
+    font-style: italic;
+}
+
+#fname::first-letter, #lname::first-letter {
+    font-size: 11pt;
+}
+
+#fname, #lname {
+    display: inline-block;
+    margin: 0;
+}
+
+#ingr li {
+    list-style-type: disc;
+}
+
+#ingr li:nth-of-type(2), #ingr li:nth-of-type(2n+1) + li {
+    list-style-type: square;
 }
 
 
