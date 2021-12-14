@@ -1,9 +1,15 @@
 Author:         Samantha Farley
+
 Date:           December 14, 2021
+
 Student ID:     6768795
+
 Email:          sfarley@bu.edu
+
 University:     Boston University
+
 Course:         CS 602: Server-Side Web Development
+
 Professor:      Andrew Sheehan
 
 Description:    This project is meant to serve as a useful tool for its developer, Samantha Farley, so that she can store all of her recipes in one place. It stores 
