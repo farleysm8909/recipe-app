@@ -1,0 +1,12 @@
+To run this program, the following will need to be up and running:
+
+1) A Mongo database called "recipe-db" to connect to through localhost 
+    - I connected using MongoDB Compass and the connection string: mongodb://localhost:27017/recipe-db
+2) VS Code Live Server or some client serving application like MAMP to launch the client code
+3) The following dependencies need to be installed:
+    - Express
+    - Mongoose
+    - Node
+    - CORS
+
+This progrom is launched by running "node app.js" in a local terminal and launching the client in the browser.

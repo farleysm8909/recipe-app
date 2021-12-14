@@ -119,8 +119,9 @@ footer {
 }
 
 .recipe-card img {
-    height: auto; 
+    height: 250px; 
     width: 350px;
+    object-fit: cover;
 }
 
 .recipe-card h3 {

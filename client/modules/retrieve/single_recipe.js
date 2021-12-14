@@ -36,7 +36,7 @@ async function displaySingleRecipe(recipe_name) {
     }
     cased_name = `<h1>${cased_name}</h1>`;
     // image comes next - how to store in db? https://www.youtube.com/watch?v=3TfpgLfJYoo
-    const img = `<img src="images/placeholder.jpg" alt="chicken parmesan">`; //`<img src="images/{jsonResponse.img.filename} alt="chicken parmesan">`;
+    const img = `<img src="images/${jsonResponse.img.filename}" alt="image of food">`; //`<img src="images/{jsonResponse.img.filename} alt="chicken parmesan">`;
 
     const prep_time = `<span>Prep Time:</span> ${jsonResponse.prepTime} minutes`;
     const cook_time = `<span>Cook Time:</span> ${jsonResponse.cookTime} minutes`;
