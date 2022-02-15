@@ -213,9 +213,14 @@ form > * {
     list-style-type: disc;
 }
 
+
+/* Challenge used for class: 
+ * Alternate circle/square for bullet points when displaying a single recipe's ingredients
+ * Decided I didn't like the look of it, but wanted code for future reference
+ 
 #ingr li:nth-of-type(2), #ingr li:nth-of-type(2n+1) + li {
     list-style-type: square;
-}
+} */
 
 
 @media only screen and (max-width: 754px) {
