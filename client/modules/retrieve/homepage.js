@@ -5,6 +5,7 @@ async function displayHomepage() {
     document.getElementById("create-recipe-container").style.display = "none";
     document.getElementById("single-recipe-container").style.display = "none";
     document.getElementById("edit-recipe-container").style.display = "none";
+    document.getElementById("search-bar").value = "";
     document.getElementById("homepage-container").style.display = "block";
     const url = "http://127.0.0.1:3000/recipe";
 
@@ -29,7 +30,6 @@ async function displayHomepage() {
                 cased_name += name[i];
             }
         }
-        console.log("filename: " + recipe.img.filename);
         let img = `
         <div class="recipe-img-container">
             <img src="images/${recipe.img.filename}" alt="image of food">
