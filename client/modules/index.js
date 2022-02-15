@@ -13,13 +13,6 @@ window.addEventListener('DOMContentLoaded', () => {
     document.getElementById("copyright-year").innerHTML = new Date().getFullYear();
 
     const search_bar = document.getElementById("search-bar");
-    const edit_name = document.getElementById("edit-name");
-    const edit_ryield = document.getElementById("edit-recipe-yield");
-    const edit_tags = document.getElementById("edit-tags");
-    const edit_prep = document.getElementById("edit-prep-time");
-    const edit_cook = document.getElementById("edit-cook-time");
-    const edit_ing = document.getElementById("edit-ingredients");
-    const edit_dir = document.getElementById("edit-directions");
 
     // let filename = "placeholder.jpg";
     // // watch for change to image upload input element, need to grab value for path
@@ -132,75 +125,5 @@ window.addEventListener('DOMContentLoaded', () => {
     } else {
         console.error(`Unable to bind to target! Debug Required.`);
     }
-
-    // listen for mouseover on edit name
-    edit_name.addEventListener("mouseover", (e) => {
-        edit_name.focus();
-    });
-
-    // listen for mouseout on edit name
-    edit_name.addEventListener("mouseout", (e) => {
-        edit_name.blur();
-    });
-
-    // listen for mouseover on edit ryield
-    edit_ryield.addEventListener("mouseover", (e) => {
-        edit_ryield.focus();
-    });
-
-    // listen for mouseout on edit ryield
-    edit_ryield.addEventListener("mouseout", (e) => {
-        edit_ryield.blur();
-    });
-
-    // listen for mouseover on edit prep
-    edit_prep.addEventListener("mouseover", (e) => {
-        edit_prep.focus();
-    });
-
-    // listen for mouseout on edit prep
-    edit_prep.addEventListener("mouseout", (e) => {
-        edit_prep.blur();
-    });
-
-    // listen for mouseover on edit cook
-    edit_cook.addEventListener("mouseover", (e) => {
-        edit_cook.focus();
-    });
-
-    // listen for mouseout on edit cook
-    edit_cook.addEventListener("mouseout", (e) => {
-        edit_cook.blur();
-    });
-
-    // listen for mouseover on edit tags
-    edit_tags.addEventListener("mouseover", (e) => {
-        edit_tags.focus();
-    });
-
-    // listen for mouseout on edit tags
-    edit_tags.addEventListener("mouseout", (e) => {
-        edit_tags.blur();
-    });
-
-    // listen for mouseover on edit ing
-    edit_ing.addEventListener("mouseover", (e) => {
-        edit_ing.focus();
-    });
-
-    // listen for mouseout on edit ing
-    edit_ing.addEventListener("mouseout", (e) => {
-        edit_ing.blur();
-    });
-
-    // listen for mouseover on edit directions
-    edit_dir.addEventListener("mouseover", (e) => {
-        edit_dir.focus();
-    });
-
-    // listen for mouseout on edit tags
-    edit_dir.addEventListener("mouseout", (e) => {
-        edit_dir.blur();
-    });
  
 });
